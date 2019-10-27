@@ -1,0 +1,90 @@
+﻿@model QuantityModel
+
+@using SmartStore.Web.Models.Checkout;
+@using SmartStore.DevTools.Models
+
+
+
+@{
+    /**/
+
+    Layout = "_Checkout";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Checkout").Text);
+}
+@section orderProgress{
+    @{ Html.RenderAction("CheckoutProgress", "Checkout", new { step = CheckoutProgressStep.Quantity, area = "" }); }
+}
+
+
+<section class="step-area section_padding_100 clearfix" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="section-heading">
+                    <h2>How Many Filters Does Your Home Have?</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="page product-details-page">
+                    <div class="page-body checkout-data">
+
+                        @using (Html.BeginForm())
+                        {
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="pd-offer-action-qty">
+                                        @Html.EditorFor(model => model, "QtyInput", new { large = false })
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height:100px;">
+                            </div>
+
+                            <div class="buttons">
+                                <div class="back-button">
+                                    <a href="@Url.RouteUrl("QualityStep", new { categoryId = 1 })">
+                                        <!--18-->
+                                        <i class="fa fa-angle-left"></i>
+                                        <span>@T("Common.Back")</span>
+                                    </a>
+                                </div>
+
+                                <input type="submit" id="nextstep" name="nextstep" class="d-none" />
+
+                                <a class="btn submit-btn btn-lg new-address-next-step-button" id="quantityNext" href="@Url.RouteUrl("SizeStep", new { productId = Model.ProductId, quantity = Model.EnteredQuantity})">
+                                    <span>@T("Checkout.NextButton")</span>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+
+
+    $('#EnteredQuantity').on('change',  function (e) {
+
+        $('#quantityNext').attr("href", "/MyCheckout/SizeStep/" + @Model.ProductId + "/" + $('#EnteredQuantity').val());
+    });
+
+    /*
+ function OnChangeEvent(){
+     debugger;
+     alert('inside Onchange');
+     $('quantityNext').attr("href", "http://www.google.com/Model.EnteredQuantity")
+
+
+ }    */
+</script>

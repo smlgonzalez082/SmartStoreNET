@@ -1,4 +1,3 @@
-using System.Web;
 using Autofac;
 using Autofac.Integration.Mvc;
 using SmartStore.Core.Data;
@@ -12,43 +11,47 @@ using SmartStore.Web.Framework.Controllers;
 
 namespace SmartStore.DevTools
 {
-	public class DependencyRegistrar : IDependencyRegistrar
+    public class DependencyRegistrar : IDependencyRegistrar
     {
-		public virtual void Register(ContainerBuilder builder, ITypeFinder typeFinder, bool isActiveModule)
+        public virtual void Register(ContainerBuilder builder, ITypeFinder typeFinder, bool isActiveModule)
         {
-			if (isActiveModule)
-			{
-                builder.Register<IChronometer>(c => 
-                {
-                    var ctx = c.Resolve<HttpContextBase>();
-
-                    if (ProfilerHttpModule.MiniProfilerStarted(ctx.ApplicationInstance))
-                    {
-                        return new MiniProfilerChronometer();
-                    }
-                    return NullChronometer.Instance;
-                }).InstancePerRequest();
+            if (isActiveModule)
+            {
+                builder.RegisterType<MiniProfilerChronometer>().As<IChronometer>().InstancePerRequest();
 
                 if (DataSettings.DatabaseIsInstalled())
-				{
-					// intercept ALL public store controller actions
-					builder.RegisterType<ProfilerFilter>().AsActionFilterFor<SmartController>();
-					builder.RegisterType<WidgetZoneFilter>().AsActionFilterFor<SmartController>();
-					builder.RegisterType<MachineNameFilter>().AsResultFilterFor<SmartController>();
+                {
+                    // intercept ALL public store controller actions
+                    builder.RegisterType<ProfilerFilter>().AsActionFilterFor<SmartController>();
+                    builder.RegisterType<WidgetZoneFilter>().AsActionFilterFor<SmartController>();
+                    builder.RegisterType<MachineNameFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<ScheduleStepFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<SizeStepFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<QuantityStepFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<QualityStepFilter>().AsResultFilterFor<SmartController>();
+
+
+
+                    //builder.RegisterType<SliderFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<HomePageFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<HeaderFilter>().AsResultFilterFor<SmartController>();
+                    builder.RegisterType<FooterFilter>().AsResultFilterFor<SmartController>();
+
+
 
                     // Add an action to product detail offer actions
                     //builder.RegisterType<SampleProductDetailActionFilter>()
                     //    .AsActionFilterFor<ProductController>(x => x.ProductDetails(default(int), default(string), null))
                     //    .InstancePerRequest();
-                    
+
                     //// intercept CatalogController's Product action
                     //builder.RegisterType<SampleResultFilter>().AsResultFilterFor<CatalogController>(x => x.Product(default(int), default(string))).InstancePerRequest();
                     //builder.RegisterType<SampleActionFilter>().AsActionFilterFor<PublicControllerBase>().InstancePerRequest();
                     //// intercept CheckoutController's Index action (to hijack the checkout or payment workflow)
                     //builder.RegisterType<SampleCheckoutFilter>().AsActionFilterFor<CheckoutController>(x => x.Index()).InstancePerRequest();
                 }
-			}
-		}
+            }
+        }
 
         public int Order
         {

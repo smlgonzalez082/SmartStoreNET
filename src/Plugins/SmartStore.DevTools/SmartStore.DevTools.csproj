@@ -175,6 +175,14 @@
     <Compile Include="Events\CustomTab.cs" />
     <Compile Include="Examples\OutputCacheInvalidationObserver.cs" />
     <Compile Include="Filters\MachineNameFilter.cs" />
+    <Compile Include="Filters\FooterFilter.cs" />
+    <Compile Include="Filters\HeaderFilter.cs" />
+    <Compile Include="Filters\HomePageFilter.cs" />
+    <Compile Include="Filters\QualityStepFilter.cs" />
+    <Compile Include="Filters\QuantityStepFilter.cs" />
+    <Compile Include="Filters\ScheduleStepFilter.cs" />
+    <Compile Include="Filters\SizeStepFilter.cs" />
+    <Compile Include="Filters\SliderFilter.cs" />
     <Compile Include="Filters\Samples\SampleProductDetailActionFilter.cs" />
     <Compile Include="Filters\WidgetZoneFilter.cs" />
     <Compile Include="Filters\Samples\SampleCheckoutFilter.cs" />
@@ -182,6 +190,8 @@
     <Compile Include="Filters\Samples\SampleResultFilter.cs" />
     <Compile Include="Filters\Samples\SampleActionFilter.cs" />
     <Compile Include="DevToolsPlugin.cs" />
+    <Compile Include="Models\FrecuencyModel.cs" />
+    <Compile Include="Models\QuantityModel.cs" />
     <Compile Include="Models\BackendExtensionModel.cs" />
     <Compile Include="ProfilerHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,6 +271,123 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Story\BlockTemplates\Sample\Public.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\SizeStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\Footer.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\Header.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\HomePage.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\QualityStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\QuantityStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\ScheduleStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\DevTools\Slider.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\SizeStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\QualityStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\QuantityStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\ScheduleStep.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Variants.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.List.Quality.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Reviews.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.ReviewSummary.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Specs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.StockInfo.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Tabs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Tags.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.TierPrices.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\CrossSellProducts.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.AlsoPurchased.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.AssociatedProduct.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Attrs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Bundle.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Bundle.Items.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Bundle.Price.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.CustomerPrice.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.GiftCard.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Info.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.List.Quality.Item.Buttons.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.List.Quality.Item.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Offer.Actions.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Offer.Actions.Misc.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Offer.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Offer.Price.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.Picture.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\MyCheckout\Partials\Product.RelatedProducts.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

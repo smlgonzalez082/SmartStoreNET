@@ -1,0 +1,740 @@
+﻿@model ContactUsModel
+
+@using SmartStore.Web.Models.Common;
+@using SmartStore.Web.Framework.Security
+
+<!-- ***** Wellcome Area Start ***** -->
+
+<section class="wellcome_area clearfix" id="home">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 col-md">
+                <div class="wellcome-heading">
+                    <h2>Pure air is just a few clicks away...</h2>
+                </div>
+                <div class="get-start-area">
+                    <form action="#" method="post" class="form-inline">
+                        <a href='/MyCheckout/QualityStep'
+                           class="submit">
+                            Get Started
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-thumb wow fadeInDown" data-wow-delay="0.5s">
+        <img src="~/Content/Images/homepage/bg-img/welcome-img3.png" alt="">
+    </div>
+</section>
+<!-- ***** Wellcome Area End ***** -->
+<!-- ***** Awesome Features Start ***** -->
+<section class="awesome-feature-area bg-white section_padding_100 clearfix" id="whyus">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Heading Text -->
+                <div class="section-heading text-center">
+                    <h2>Why choosing FloFilters</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                    <h5>Ships Free</h5>
+                    <p>We offer free shipping for every single one of your orders.</p>
+                </div>
+            </div>
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fa fa-people-carry" aria-hidden="true"></i>
+                    <h5>Delivered to your door</h5>
+                    <p>No need to leave your home, we'll that for you.</p>
+                </div>
+            </div>
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fa fa-hand-holding-usd" aria-hidden="true"></i>
+                    <h5>Affordable</h5>
+                    <p>We have the right price, no more retail prices for you.</p>
+                </div>
+            </div>
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fas fa-bell" aria-hidden="true"></i>
+                    <h5>We never forget</h5>
+                    <p>We will remind you when to change your filters. Relax, we've got your back.</p>
+                </div>
+            </div>
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fa fa-magic" aria-hidden="true"></i>
+                    <h5>Fast & Simple</h5>
+                    <p>You sing up and we do the rest. Enjoy some free time</p>
+                </div>
+            </div>
+            <!-- Single Feature Start -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-feature">
+                    <i class="fa fa-vector-square" aria-hidden="true"></i>
+                    <h5>All Filter Sizes</h5>
+                    <p>Whatever size you need, we got it covered.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ***** Awesome Features End ***** -->
+<!-- ***** Pricing Plane Area Start *****==== -->
+<section class="pricing-plane-area section_padding_100_70 clearfix" id="qualities">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Heading Text  -->
+                <div class="section-heading text-center">
+                    <h2>Choose the right filter</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-12 col-md-6 col-lg-4">
+                <!-- Package Price  -->
+                <div class="single-price-plan text-center">
+                    <!-- Package Text  -->
+                    <div class="package-plan">
+                        <h5>MERV 8</h5>
+                        <div class="ca-price d-flex justify-content-center">
+                            <h4>PREMIER</h4>
+                        </div>
+                    </div>
+                    <div class="package-description">
+                        <p><i class="fa fa-check"></i> Lint</p>
+                        <p><i class="fa fa-check"></i> Household Dust</p>
+                        <p><i class="fa fa-check"></i> Pollen</p>
+                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
+                        <p><i class="fa fa-check"></i> Mold Spores</p>
+                        <p>Pet Dander</p>
+                        <p>Smoke</p>
+                        <p>Smog</p>
+                        <p>Cough/Sneeze</p>
+                        <p>Bacteria</p>
+                        <p>Virus Carriers</p>
+                    </div>
+                    <!-- Plan Button  -->
+                    <div class="plan-button">
+                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 1 } })'>
+                            <!--60-->
+                            Select this Quality
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <!-- Package Price  -->
+                <div class="single-price-plan active text-center">
+                    <!-- Package Text  -->
+                    <div class="package-plan">
+                        <h5>MERV 11</h5>
+                        <div class="ca-price d-flex justify-content-center">
+                            <h4>PRESTIGE</h4>
+                        </div>
+                    </div>
+                    <div class="package-description">
+                        <p><i class="fa fa-check"></i> Lint</p>
+                        <p><i class="fa fa-check"></i> Household Dust</p>
+                        <p><i class="fa fa-check"></i> Pollen</p>
+                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
+                        <p><i class="fa fa-check"></i> Mold Spores</p>
+                        <p><i class="fa fa-check"></i> Pet Dander</p>
+                        <p><i class="fa fa-check"></i> Smoke</p>
+                        <p><i class="fa fa-check"></i> Smog</p>
+                        <p><i class="fa fa-check"></i> Cough/Sneeze</p>
+                        <p>Bacteria</p>
+                        <p>Virus Carriers</p>
+                    </div>
+                    <!-- Plan Button  -->
+                    <div class="plan-button">
+                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 61 } })'>
+                            Select this Quality
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <!-- Package Price  -->
+                <div class="single-price-plan text-center">
+                    <!-- Package Text  -->
+                    <div class="package-plan">
+                        <h5>MERV 13</h5>
+                        <div class="ca-price d-flex justify-content-center">
+                            <h4>ELITE</h4>
+                        </div>
+                    </div>
+                    <div class="package-description">
+                        <p><i class="fa fa-check"></i> Lint</p>
+                        <p><i class="fa fa-check"></i> Household Dust</p>
+                        <p><i class="fa fa-check"></i> Pollen</p>
+                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
+                        <p><i class="fa fa-check"></i> Mold Spores</p>
+                        <p><i class="fa fa-check"></i> Pet Dander</p>
+                        <p><i class="fa fa-check"></i> Smoke</p>
+                        <p><i class="fa fa-check"></i> Smog</p>
+                        <p><i class="fa fa-check"></i> Cough/Sneeze</p>
+                        <p><i class="fa fa-check"></i> Bacteria</p>
+                        <p><i class="fa fa-check"></i> Virus Carriers</p>
+                    </div>
+                    <!-- Plan Button  -->
+                    <div class="plan-button">
+                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 1061 } })'>
+                            Select this Quality
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Pricing Plane Area End ***** -->
+<!-- ***** Special Area Start ***** -->
+<section class="special-area bg-white section_padding_100" id="benefits">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Section Heading Area -->
+                <div class="section-heading text-center">
+                    <h2>Benefits of Clean Air Filters</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-3">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="single-icon">
+                        <i class="fal fa-snowflake" aria-hidden="true"></i>
+                    </div>
+                    <h4>Improve life of AC unit</h4>
+                    <p>With regular filter maintenance you can help your unit breathe easier and extend its life.</p>
+                </div>
+            </div>
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-3">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="single-icon">
+                        <i class="fa fa-leaf" aria-hidden="true"></i>
+                    </div>
+                    <h4>Better energy efficiency</h4>
+                    <p>Changing an air conditioning filter is a simple first step to save money. A new air conditioning filter can more than pay for itself.</p>
+                </div>
+            </div>
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-3">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="single-icon">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </div>
+                    <h4>Quality of air in your home</h4>
+                    <p>Your home will smell better, have less dust and even reduced allergens when you keep a clean air conditioner filter.</p>
+                </div>
+            </div>
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-3">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="single-icon">
+                        <i class="fa fa-wave-square" aria-hidden="true"></i>
+                    </div>
+                    <h4>Keep ductwork cleaner</h4>
+                    <p>Keeping air conditioning filters clean can contribute to cleaner ductwork.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Special Description Area -->
+    <!--
+    <div class="special_description_area mt-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="special_description_img">
+                        <img src="~/Content/Images/homepage/bg-img/special.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-5 ml-xl-auto">
+                    <div class="special_description_content">
+                        <h2>Our Best Propositions for You!</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="app-download-area">
+                            <div class="app-download-btn wow fadeInUp" data-wow-delay="0.2s">
+                                <!-- Google Store Btn -->
+    <!--     <a href="#">
+             <i class="fa fa-android"></i>
+             <p class="mb-0"><span>available on</span> Google Store</p>
+         </a>
+     </div>
+     <div class="app-download-btn wow fadeInDown" data-wow-delay="0.4s">
+         <!-- Apple Store Btn -->
+    <!--        <a href="#">
+                                    <i class="fa fa-apple"></i>
+                                    <p class="mb-0"><span>available on</span> Apple Store</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</section>
+<!-- ***** Special Area End ***** -->
+<!-- ***** Video Area Start ***** -->
+<div class="video-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Video Area Start -->
+                <div class="video-area" style="background-image: url(~/Content/Images/homepage/bg-img/video1.jpg);">
+                    <div class="video-play-btn">
+                        <a href="https://www.youtube.com/watch?v=J2zfg3sS7Qc" class="video_btn"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        <!--<a href="http://www.powtoon.com/embed/cPseAQfYsDS?autoplay=1" class="video_btn"><i class="fa fa-play" aria-hidden="true"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Video Area End ***** -->
+<!-- ***** Cool Facts Area Start ***** -->
+<section class="cool_facts_area clearfix">
+    <div class="container">
+        <div class="row">
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.0s">
+                    <div class="counter-area">
+                        <h3><span class="counter">1</span></h3>
+                    </div>
+                    <div class="cool-facts-content">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>CHOOSE THE QUALITY</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.0s">
+                    <div class="counter-area">
+                        <h3><span class="counter">2</span></h3>
+                    </div>
+                    <div class="cool-facts-content">
+                        <i class="fas fa-ruler-combined"></i>
+                        <p>SELECT THE SIZE YOU NEED</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.0s">
+                    <div class="counter-area">
+                        <h3><span class="counter">3</span></h3>
+                    </div>
+                    <div class="cool-facts-content">
+                        <i class="fas fa-calendar-check"></i>
+                        <p>SCHEDULE SHIPMENT</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.0s">
+                    <div class="counter-area">
+                        <h3><span class="counter">4</span></h3>
+                    </div>
+                    <div class="cool-facts-content">
+                        <i class="fas fa-couch"></i>
+                        <p>SIT BACK AND BREATHE CLEAN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Cool Facts Area End ***** -->
+<!-- ***** App Screenshots Area Start ***** -->
+<!--
+<section class="app-screenshots-area bg-white section_padding_0_100 clearfix" id="screenshot">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Heading Text  -->
+<!--    <div class="section-heading">
+                <h2>App Screenshots</h2>
+                <div class="line-shape"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <!-- App Screenshots Slides  -->
+<!--         <div class="app_screenshots_slides owl-carousel">
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-1.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-2.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-3.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-4.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-5.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="~/Content/Images/homepage/scr-img/app-3.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- ***** App Screenshots Area End *****====== -->
+<!-- ***** Client Feedback Area Start ***** -->
+<section class="clients-feedback-area bg-white section_padding_0_50 clearfix" id="testimonials">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="slider slider-for">
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>
+                                “ I’ve been ordering these filters for over a year now and never had a problem! The shipping is SUPER QUICK...
+                                & product does its job perfectly! Let’s not forget the price is great & affordable! 5+ stars from this Happy Customer!! ”
+                            </p>
+                        </div>
+                        <div class="star-icon text-center">
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                        </div>
+                        <div class="client-name text-center">
+                            <h5>Yenia</h5>
+                            <!--<p>Ceo Colorlib</p>-->
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ Excellent replacement at half the cost! Why spend so much to replace a filter when you can accomplish the job at a fraction of the cost? Awesome customer service. Thumbs up ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                        </div>
+                        <div class="client-name text-center">
+                            <h5>David</h5>
+                            <!--<p>Developer</p>-->
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ You can't beat their deals! Save yourself from paying double and get these replacement filters at the perfect price. Shipping was quick and they were well protected.”</p>
+                        </div>
+                        <div class="star-icon text-center">
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                        </div>
+                        <div class="client-name text-center">
+                            <h5>Yely</h5>
+                            <!--<p>Marketer</p>-->
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ Hard to get too excited about furnace filters, but these are the real deal at a reasonable price. Local big box stores didn't even carry something this size and quality, so...FloFilters to the rescue! ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                            <i class="ion-ios-star"></i>
+                        </div>
+                        <div class="client-name text-center">
+                            <h5>Sheila</h5>
+                            <!--<p>Developer</p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Client Thumbnail Area -->
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="slider slider-nav">
+                    <div class="client-thumbnail">
+                        <img src="~/Content/Images/homepage/bg-img/client-6.jpg" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="~/Content/Images/homepage/bg-img/client-4.jpg" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="~/Content/Images/homepage/bg-img/client-5.jpg" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="~/Content/Images/homepage/bg-img/client-7.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Client Feedback Area End ***** -->
+<!-- ***** CTA Area Start ***** -->
+<section class="our-monthly-membership section_padding_50 clearfix">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="membership-description">
+                    <h2>Easily manage your subscriptions</h2>
+                    <p>No commitments, obligations, or fees and you can cancel at any time</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="get-started-button wow bounceInDown" data-wow-delay="0.5s">
+                    <a href='/MyCheckout/QualityStep'>
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** CTA Area End ***** -->
+<!-- ***** Our Team Area Start ***** -->
+<!--
+<section class="our-Team-area bg-white section_padding_100_50 clearfix" id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Heading Text  -->
+<!--             <div class="section-heading">
+                    <h2>Our Team</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="~/Content/Images/homepage/team-img/team-1.jpg" alt="">
+                        <div class="team-hover-effects">
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4>Jackson Nash</h4>
+                        <p>Tax Advice</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="~/Content/Images/homepage/team-img/team-2.jpg" alt="">
+                        <div class="team-hover-effects">
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4>Alex Manning</h4>
+                        <p>CEO-Founder</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="~/Content/Images/homepage/team-img/team-3.jpg" alt="">
+                        <div class="team-hover-effects">
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4>Ollie Schneider</h4>
+                        <p>Business Planner</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="~/Content/Images/homepage/team-img/team-4.jpg" alt="">
+                        <div class="team-hover-effects">
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4>Roger West</h4>
+                        <p>Financer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Our Team Area End ***** -->
+<!-- ***** Contact Us Area Start ***** -->
+<section class="footer-contact-area section_padding_100 clearfix" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Heading Text  -->
+                <div class="section-heading">
+                    <h2>Get in touch with us!</h2>
+                    <div class="line-shape"></div>
+                </div>
+                <div class="footer-text">
+                    <p>Contact us to find out how FloFilters can work for you.</p>
+                </div>
+                <!--  <div class="address-text">
+                    <p><span>Address:</span> 40 Baria Sreet 133/2 NewYork City, US</p>
+                </div>   -->
+                <div class="phone-text">
+                    <p><span>Phone:</span> <a style="color: #726a84;font-size: 16px;font-weight: 300;" href="tel:+1 (305) 562-6960">+1 (305) 562-6960</a></p>
+                </div>
+                <div class="email-text">
+                    <p><span>Email:</span> <a style="color: #726a84;font-size: 16px;font-weight: 300;" href="mailto:sales@flofilters.com">sales&#64;flofilters.com</a></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Form Start-->
+                <div class="contact_from">
+
+                    @if (Model.SuccessfullySent)
+                    {
+                        <div class="alert alert-success">
+                            @Model.Result
+                        </div>
+                    }
+                    else
+                    {
+                        using (Html.BeginRouteForm("ContactUs", FormMethod.Post, new { @class = "contact-form" }))
+                        {
+                            if (!ViewData.ModelState.IsValid)
+                            {
+                                @Html.ValidationSummary(false)
+                            }
+
+                            if (this.EnableHoneypotProtection)
+                            {
+                                <div class="d-none">
+                                    @Html.HoneypotField()
+                                </div>
+                            }
+                            <!-- Message Input Area Start -->
+                            <div class="contact_input_area">
+                                <div class="row">
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.FullName, new { @required = Model.FullNameRequired, @placeholder = "Your Name *", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.Email, new { @required = Model.FullNameRequired, @placeholder = "Your E-mail *", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            @Html.TextAreaFor(model => model.Enquiry, new { @class = "form-control", cols = "30", rows = "4", placeholder = "Your Message *" })
+                                            @Html.ValidationMessageFor(model => model.Enquiry)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row justify-content-end">
+                                        <div class="col-sm-9">
+                                            @{ Html.RenderWidget("gdpr_consent"); }
+                                        </div>
+                                    </div>
+
+                                    <!-- Single Input Area Start -->
+                                    <div class="col-12">
+                                        <button type="submit" name="send-email" class="btn submit-btn">
+                                            Send Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Message Input Area End -->
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Contact Us Area End ***** -->

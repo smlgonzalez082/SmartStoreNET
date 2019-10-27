@@ -1,0 +1,193 @@
+﻿@model MenuBarModel
+
+@using SmartStore.Web.Models.Common;
+
+
+@{
+    string accountUrl = Model.IsAuthenticated ? Url.Action("Info", "Customer") : Url.RouteUrl("Login", new { ReturnUrl = Request.RawUrl });
+    string currentLocation = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
+    var isRtl = this.WorkContext.WorkingLanguage.Rtl;
+    var labelStyle = GetThemeVariable<string>("shopbar-label", "warning");
+}
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="colorlib-load"></div>
+</div>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header_area animated">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Menu Area Start -->
+            <div class="col-12 col-lg-10">
+                <div class="menu_area">
+
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <!-- Logo -->
+                        <a class="navbar-brand" href="@Url.RouteUrl("HomePage")">FloFilters</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar" aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <!-- Menu Area -->
+                        <div class="collapse navbar-collapse" id="ca-navbar">
+                            <ul class="navbar-nav ml-auto" id="nav">
+                                <li class="nav-item active"><a class="nav-link" href="@Url.RouteUrl("HomePage")">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#whyus">Why us?</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#qualities">Qualities</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#benefits">Benefits</a></li>
+                                <!--<li class="nav-item"><a class="nav-link" href="#screenshot">Screenshot</a></li>-->
+
+                                <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+
+                                <!--<li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
+
+                                @if (currentLocation == "Home")
+                                {
+                                    <li class="nav-item"><a class="nav-link" href="#contact">Contact us</a></li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item"><a class="nav-link" href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                                }
+
+                                @if (Model.IsCustomerImpersonated)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" title="@T("Account.ImpersonatedAs.Finish.Hint")" href="@Url.RouteUrl("Logout")">
+                                            <i class="fal fa-sign-out-alt menubar-icon"></i>
+                                            <span>@Model.CustomerEmailUsername</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (Model.IsAuthenticated)
+                                {
+                                    if (Model.DisplayAdminLink)
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Content("~/admin")" target="_admin" rel="nofollow">
+                                                <i class="fal fa-cog fa-fw"></i>
+                                                <span>@T("Account.Administration")</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="~/Customer/Info/" rel="nofollow">
+                                            <i class="fal fa-user fa-fw"></i>
+                                            <span>My Account</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                            <div class="sing-up-button d-lg-none">
+                                @if (Model.IsAuthenticated)
+                                {
+
+                                    <a href="@Url.RouteUrl("Logout")" rel="nofollow">
+                                        @T("Account.Logout")
+                                    </a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.RouteUrl("Login", new { ReturnUrl = Request.RawUrl })">Login</a>
+                                }
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Signup btn -->
+            <div class="col-12 col-lg-2">
+                <div class="sing-up-button d-none d-lg-block">
+                    @if (Model.IsAuthenticated)
+                    {
+                        <a href="@Url.RouteUrl("Logout")" rel="nofollow">
+                            @T("Account.Logout")
+                        </a>
+
+                        <span style="color:whitesmoke" title="@Model.CustomerEmailUsername"> @Model.CustomerEmailUsername.Truncate(25, "...")</span>
+
+                    }
+                    else
+                    {
+                        <a href="@accountUrl" rel="nofollow">
+                            @T("Account.Login")
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="shopbar-section @(GetThemeVariable<bool>("inverse-shopbar") ? "shopbar-inverse" : "shopbar-light")" style="background: none">
+            <div class="container shopbar-container">
+                <div class="shopbar">
+                    <div class="shopbar-col-group shopbar-col-group-tools">
+                        <!-- TOOLS -->
+                        <div class="shopbar-col shopbar-tools" data-summary-href="@Url.Action("CartSummary", "ShoppingCart", new { cart = true, wishlist =false, compare = false })">
+                            <div class="shopbar-tool" id="shopbar-cart" data-target="#cart-tab">
+                                <a href="@Url.RouteUrl("ShoppingCart")" class="shopbar-button navbar-toggler" data-toggle="offcanvas" data-summary-href="@Url.Action("CartSummary", "ShoppingCart", new { cart = true })"
+                                   data-autohide="true" data-placement="@(isRtl ? "left" : "right")" data-fullscreen="false" data-disablescrolling="true" data-target="#offcanvas-cart">
+                                    <span class="shopbar-button-icon">
+                                        <i class="icm icm-bag"></i>
+
+                                    </span>
+                                    <span class="shopbar-button-label">
+                                        <span>@T("Common.Shopbar.BasketPartOne")</span><br />
+                                        <strong>@T("Common.Shopbar.BasketPartTwo")</strong>
+                                    </span>
+                                    <span class="shopbar-button-label-sm">
+                                        @T("Common.Shopbar.Basket")
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        @using (Html.BeginZoneContent("aftercontent", key: "offcanvas-menu"))
+                        {
+                            <aside id="offcanvas-menu" class="offcanvas offcanvas-overlay offcanvas-@(isRtl ? "right" : "left") offcanvas-shadow" data-blocker="true" data-overlay="true">
+                                <div class="offcanvas-content">
+                                    <div id="menu-container"
+                                         data-url-home="@(Url.Action("OffCanvasMenu", "Catalog"))"
+                                         data-url-item="@(Url.Action("OffCanvasMenuCategories", "Catalog"))"
+                                         data-url-manufacturer="@(Url.Action("OffCanvasMenuManufacturers", "Catalog"))">
+                                        <!-- AJAX -->
+                                    </div>
+                                </div>
+                            </aside>
+                        }
+                        @using (Html.BeginZoneContent("aftercontent", key: "offcanvas-cart"))
+                        {
+                            <aside id="offcanvas-cart" class="offcanvas offcanvas-lg offcanvas-overlay offcanvas-@(isRtl ? "left" : "right") offcanvas-shadow" data-lg="true" data-blocker="true" data-overlay="true">
+                                <div class="offcanvas-content">
+                                    @Html.Action("OffCanvasCart", "ShoppingCart", new { area = "" })
+                                </div>
+                            </aside>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  <div class="shopbar-tool" id="shopbar-cart" data-target="#cart-tab">
+              <a href="~/ShoppingCart/CartSummary?cart=true" class="nav-link" data-summary-href="@Url.Action("CartSummary", "ShoppingCart", new { cart = true })"
+                 data-autohide="true" data-placement="@(isRtl ? "left" : "right")" data-fullscreen="false" data-disablescrolling="true" data-target="#offcanvas-cart">
+                  <span class="shopbar-button-icon">
+                      <i class="icm icm-bag"></i>
+                      <span class='badge badge-pill label-cart-amount badge-@(labelStyle)' style="@(ViewBag.cartItemsCount == 0 ? "display:none" : "")" data-bind-to="CartItemsCount">
+                          @ViewBag.cartItemsCount
+                      </span>
+                  </span>
+                  <span class="shopbar-button-label">
+                      <span>@T("Common.Shopbar.BasketPartOne")</span><br />
+                      <strong>@T("Common.Shopbar.BasketPartTwo")</strong>
+                  </span>
+                  <span class="shopbar-button-label-sm">
+                      @T("Common.Shopbar.Basket")
+                  </span>
+              </a>
+          </div>    -->
+    </div>
+</header>
+
+
+
+<!-- ***** Header Area End ***** -->

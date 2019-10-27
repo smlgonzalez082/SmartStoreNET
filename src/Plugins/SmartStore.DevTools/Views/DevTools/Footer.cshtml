@@ -1,0 +1,49 @@
+﻿@model dynamic
+
+<!-- ***** Footer Area Start ***** -->
+
+@using SmartStore.Web.Models.Common;
+@using SmartStore.Services.Cms;
+@{
+    var footerLinks = new List<LinkResolverResult>
+{
+    LinkResolver.Resolve("topic:aboutus"),
+    LinkResolver.Resolve("topic:conditionsofuse")
+};
+
+    var x = 0;
+}
+
+
+<footer class="footer-social-icon text-center section_padding_70 clearfix">
+
+    <!-- footer logo -->
+    <div class="footer-text">
+        <h2>FloFilters</h2>
+    </div>
+    <!-- social icon-->
+
+    <div class="footer-social-icon">
+        <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        <a href="#"><i class="active fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#"> <i class="fab fa-instagram" aria-hidden="true"></i></a>
+    </div>
+    <div class="footer-menu">
+        <nav>
+            <ul>
+                <li><a href="~/aboutus">About</a></li>
+                <li><a href="~/conditionsofuse">Terms &amp; Conditions</a></li>
+                <li><a href="~/privacyinfo">Privacy Policy</a></li>
+                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Foooter Text-->
+    <div class="copyright-text">
+        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
+        <p>Copyright ©2019 Ca. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+    </div>
+</footer>
+
+
+<!-- ***** Footer Area Start ***** -->

@@ -1,0 +1,124 @@
+﻿@model ProductDetailsModel
+@using SmartStore.Web.Models.Checkout;
+
+
+@using SmartStore.Core.Domain.Catalog;
+@using SmartStore.Web.Models.Catalog;
+@using SmartStore.Web.Framework.UI;
+@using SmartStore.Web;
+@using SmartStore.DevTools.Models;
+@{
+    Layout = "_Checkout";
+
+    var frecuencies = ViewBag.frecuencies as List<FrecuencyModel>;
+
+    string updateUrl = Url.Action("UpdateProductDetails", "MyCheckout", new
+    {
+        productId = Model.Id,
+        bundleItemId = Model.BundleItem.Id,
+        itemType = (string)null // TODO: (mc) WTF!?
+    });
+
+    string backUrl = Url.RouteUrl("SizeStep", new { productId = 61, quantity = ViewBag.quantity });
+
+
+    int j = 0;
+
+}
+
+@section orderProgress{
+    @{ Html.RenderAction("CheckoutProgress", "Checkout", new { step = CheckoutProgressStep.Schedule, area = "" }); }
+}
+
+
+<section class="step-area section_padding_100 clearfix" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="section-heading">
+                    <h2>How Often Would You Like Your Filters to Ship?</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page product-details-page">
+            <div class="page-body checkout-data text-center">
+                <div id="main-update-container" class="update-container" data-url="@updateUrl">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myform" }))
+                    {
+                        int i = 0;
+                        <ul class="list-group opt-list payment-methods" id="frecuencyList">
+                            @foreach (var frecuency in frecuencies)
+                            {
+                                <li class="list-group-item opt-list-item payment-method-item @(frecuency.Selected ? "active" : "")">
+                                    <div class="opt-data">
+                                        <div class="form-check opt-control option-name radio">
+
+                                            <input id="frecuency_@(i)" type="radio" name="frecuency"
+                                                   @Html.Attr("checked", "checked", frecuency.Selected)
+                                                   data-has-info="true"
+                                                   data-lazy-info="true"
+                                                   class="opt-radio form-check-input"
+                                                   value="@(frecuency.Value)" />
+                                            <label class="form-check-label" for="frecuency_@(i)">
+                                                <span class="opt-name">@frecuency.Text</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                i++;
+                            }
+
+                        </ul>
+
+                        <div class="buttons">
+                            <div class="back-button">
+                                <a href="@backUrl">
+                                    <i class="fa fa-angle-left"></i>
+                                    <span>@T("Common.Back")</span>
+                                </a>
+                            </div>
+
+                            <input type="submit" id="nextstep" name="nextstep" class="d-none" />
+                            <a class="btn submit-btn btn-lg new-address-next-step-button" href="@Url.RouteUrl("ShoppingCart")">
+                                <span>@T("Checkout.NextButton")</span>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    $('#myform input').change(function (event) {
+
+        var list = document.getElementById("frecuencyList").getElementsByTagName("li");
+
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = "list-group-item opt-list-item payment-method-item";
+        }
+
+        event.target.closest("li").className = "list-group-item opt-list-item payment-method-item active";
+
+        $.ajax({
+            type: "POST",
+            url: "/MyCheckout/ScheduleStep",
+            data: JSON.stringify({ 'shipmentFrecuency': event.target.value }),
+            contentType: "application/json",
+
+            success: function (data) {
+
+            }
+        });
+
+    });
+
+</script>

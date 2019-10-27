@@ -1,0 +1,41 @@
+﻿@model ProductSummaryModel
+@using SmartStore.Core.Domain.Media;
+@using SmartStore.Utilities;
+@using SmartStore.Web.Models.Catalog;
+@{
+    var id = "artlist-" + CommonHelper.GenerateRandomDigitCode(10);
+
+    string pagerHtml = null;
+    pagerHtml = Html.Partial("Product.List.Pager", Model).ToHtmlString();
+
+
+
+    var listCssClasses = new List<string> { "artlist" };
+    listCssClasses.Add("artlist-grid");
+
+    if (Model.BoxedStyleItems)
+    {
+        listCssClasses.Add("artlist-boxed");
+    }
+
+    var colspan = (int)Model.GridColumnSpan;
+    listCssClasses.Add("artlist-{0}-cols".FormatInvariant(colspan));
+}
+
+
+
+@if (Model.PagedList.TotalCount > 0)
+{
+
+    foreach (var product in Model.Items)
+    {
+        <div class="col-12 col-md-6 col-lg-4">
+
+            @{
+                Html.RenderPartial("Product.List.Quality.Item", product);
+            }
+        </div>
+    }
+
+}
+

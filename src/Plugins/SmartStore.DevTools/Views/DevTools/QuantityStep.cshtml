@@ -1,0 +1,42 @@
+﻿
+@model CheckoutProgressModel
+
+@using SmartStore.Web.Models.Checkout;
+
+@{
+
+    var progressStep = new
+    {
+        Step = CheckoutProgressStep.Quantity,
+        StepName = "quantity",
+        Label = "Quantity",
+        Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Quantity,
+        Active = Model.CheckoutProgressStep == CheckoutProgressStep.Quantity,
+        //Href = Url.RouteUrl("QuantityFilterStep", new { productId = 18 })
+        Href = Url.RouteUrl("QuantityFilterStep", new { productId = 1 })
+        // Href = Url.RouteUrl("Products")
+    };
+
+    string stateClass = null;
+    string href = progressStep.Visited || progressStep.Active ? progressStep.Href : "javascript:void(0)";
+    if (progressStep.Visited)
+    {
+        stateClass = "visited";
+    }
+    else if (progressStep.Active)
+    {
+        stateClass = "active";
+    }
+    else
+    {
+        stateClass = "inactive";
+    }
+
+}
+
+<div class="col-2 costep @stateClass" data-step="@progressStep.StepName" style="flex:0 0 11%">
+    <a class="costep-link" href="@href">
+        <i class="costep-icon"></i>
+        <span class="costep-label">@progressStep.Label</span>
+    </a>
+</div>   
