@@ -1004,7 +1004,7 @@ namespace SmartStore.Services.Orders
 					{
 						var unused = cart.GetRecurringCycleInfo(_localizationService, out var recurringCycleLength, out var recurringCyclePeriod, out var recurringTotalCycles);
 
-						processPaymentRequest.RecurringCycleLength = recurringCycleLength;
+						//processPaymentRequest.RecurringCycleLength = recurringCycleLength;
 						processPaymentRequest.RecurringCyclePeriod = recurringCyclePeriod;
 						processPaymentRequest.RecurringTotalCycles = recurringTotalCycles;
 					}

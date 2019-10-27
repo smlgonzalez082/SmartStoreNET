@@ -394,7 +394,8 @@ namespace SmartStore.Web.Controllers
 			if (ModelState.IsValid)
 			{
 				var paymentInfo = paymentController.GetPaymentInfo(form);
-				_httpContext.Session["OrderPaymentInfo"] = paymentInfo;
+                paymentInfo.RecurringCycleLength = (int)_httpContext.Session["ShipmentFrecuency"];
+                _httpContext.Session["OrderPaymentInfo"] = paymentInfo;
 
 				_httpContext.GetCheckoutState().PaymentSummary = paymentController.GetPaymentSummary(form);
 
@@ -874,7 +875,8 @@ namespace SmartStore.Web.Controllers
                 }
 
                 // Place order.
-				processPaymentRequest.StoreId = store.Id;
+                processPaymentRequest.RecurringCycleLength = (int)_httpContext.Session["ShipmentFrecuency"];
+                processPaymentRequest.StoreId = store.Id;
                 processPaymentRequest.CustomerId = customer.Id;
 				processPaymentRequest.PaymentMethodSystemName = customer.GetAttribute<string>(SystemCustomerAttributeNames.SelectedPaymentMethod, _genericAttributeService, store.Id);
 
@@ -969,6 +971,8 @@ namespace SmartStore.Web.Controllers
             {
                 CheckoutProgressStep = step
             };
+
+            TempData["CheckoutProgressStep"] = step;
 
             return PartialView(model);
         }

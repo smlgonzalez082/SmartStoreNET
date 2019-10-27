@@ -9,6 +9,10 @@ namespace SmartStore.Web.Models.Checkout
 
     public enum CheckoutProgressStep
     {
+        Quality,
+        Quantity,
+        Size,
+        Schedule,
         Cart,
         Address,
         Shipping,

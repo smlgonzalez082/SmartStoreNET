@@ -8,16 +8,21 @@ using SmartStore.Services;
 using SmartStore.Services.Customers;
 using SmartStore.Services.Localization;
 using SmartStore.Services.Orders;
+using SmartStore.Services.Search;
 using SmartStore.Services.Security;
 using SmartStore.Services.Topics;
+using SmartStore.Web;
+using SmartStore.Web.Controllers;
 using SmartStore.Web.Framework;
 using SmartStore.Web.Framework.Controllers;
 using SmartStore.Web.Framework.Security;
 using SmartStore.Web.Framework.Settings;
 using SmartStore.Web.Framework.Theming;
+using SmartStore.Web.Models.Catalog;
 using SmartStore.Web.Models.Checkout;
 using SmartStore.Web.Models.Common;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SmartStore.DevTools.Controllers
@@ -30,6 +35,8 @@ namespace SmartStore.DevTools.Controllers
         private readonly Lazy<ITopicService> _topicService;
         private readonly Lazy<PrivacySettings> _privacySettings;
         private readonly Lazy<CaptchaSettings> _captchaSettings;
+        private readonly CatalogHelper _helper;
+        private readonly ICatalogSearchService _catalogSearchService;
 
         public DevToolsController(
             ICommonServices services,
@@ -37,7 +44,9 @@ namespace SmartStore.DevTools.Controllers
             CatalogSettings catalogSettings,
             Lazy<ITopicService> topicService,
             Lazy<PrivacySettings> privacySettings,
-            Lazy<CaptchaSettings> captchaSettings)
+            Lazy<CaptchaSettings> captchaSettings,
+            CatalogHelper helper,
+            ICatalogSearchService catalogSearchService)
         {
             _services = services;
             _customerSettings = customerSettings;
@@ -45,6 +54,8 @@ namespace SmartStore.DevTools.Controllers
             _topicService = topicService;
             _privacySettings = privacySettings;
             _captchaSettings = captchaSettings;
+            _helper = helper;
+            _catalogSearchService = catalogSearchService;
         }
 
         [LoadSetting, ChildActionOnly]
@@ -72,7 +83,7 @@ namespace SmartStore.DevTools.Controllers
         }
 
         public ActionResult QualityStep(int checkoutProgressStep)
-        {       
+        {
             var step = TempData["CheckoutProgressStep"];
 
             var model = new CheckoutProgressModel
@@ -83,7 +94,7 @@ namespace SmartStore.DevTools.Controllers
         }
 
         public ActionResult QuantityStep(int checkoutProgressStep)
-        {      
+        {
             var step = TempData["CheckoutProgressStep"];
 
             var model = new CheckoutProgressModel
@@ -94,7 +105,7 @@ namespace SmartStore.DevTools.Controllers
         }
 
         public ActionResult SizeStep(int checkoutProgressStep)
-        {       
+        {
             var step = TempData["CheckoutProgressStep"];
 
             var model = new CheckoutProgressModel
@@ -105,7 +116,7 @@ namespace SmartStore.DevTools.Controllers
         }
 
         public ActionResult ScheduleStep(int checkoutProgressStep)
-        {         
+        {
             var step = TempData["CheckoutProgressStep"];
 
             var model = new CheckoutProgressModel
@@ -122,6 +133,24 @@ namespace SmartStore.DevTools.Controllers
 
         public ActionResult HomePage()
         {
+            int categoryId = 1;
+            var catIds = new int[] { categoryId };
+            if (_catalogSettings.ShowProductsFromSubcategories)
+            {
+                // Include subcategories.
+                catIds = catIds.Concat(_helper.GetChildCategoryIds(categoryId)).ToArray();
+            }
+
+            CatalogSearchQuery query = new CatalogSearchQuery();
+
+            query.WithCategoryIds(_catalogSettings.IncludeFeaturedProductsInNormalLists ? (bool?)null : false, catIds);
+
+            var searchResult = _catalogSearchService.Search(query);
+            var mappingSettings = _helper.GetBestFitProductSummaryMappingSettings(query.GetViewMode());
+            mappingSettings.MapSpecificationAttributes = true;
+            ViewBag.Products = _helper.MapProductSummaryModel(searchResult.Hits, mappingSettings);
+
+
             var topic = _topicService.Value.GetTopicBySystemName("ContactUs", 0, false);
 
             var model = new ContactUsModel

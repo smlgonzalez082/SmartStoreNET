@@ -43,6 +43,8 @@ namespace SmartStore.Web.Models.Catalog
 			}
 		}
 
+        //OG
+        public int ShipmentFrecuency { get; set; }
         public LocalizedValue<string> Name { get; set; }
         public LocalizedValue<string> ShortDescription { get; set; }
         public LocalizedValue<string> FullDescription { get; set; }

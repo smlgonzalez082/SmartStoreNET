@@ -2,8 +2,14 @@
 
 @using SmartStore.Web.Models.Common;
 @using SmartStore.Web.Framework.Security
+@using SmartStore.Web.Models.Checkout;
+@using SmartStore.Web.Models.Catalog;
 
 <!-- ***** Wellcome Area Start ***** -->
+
+@{
+    var products = (ProductSummaryModel)ViewBag.Products;
+}
 
 <section class="wellcome_area clearfix" id="home">
     <div class="container h-100">
@@ -23,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="welcome-thumb wow fadeInDown" data-wow-delay="0.5s">
+    <div class="welcome-thumb wow fadeInDown hidden-filter" data-wow-delay="0.5s">
         <img src="~/Content/Images/homepage/bg-img/welcome-img3.png" alt="">
     </div>
 </section>
@@ -109,100 +115,14 @@
         </div>
 
         <div class="row no-gutters">
-            <div class="col-12 col-md-6 col-lg-4">
-                <!-- Package Price  -->
-                <div class="single-price-plan text-center">
-                    <!-- Package Text  -->
-                    <div class="package-plan">
-                        <h5>MERV 8</h5>
-                        <div class="ca-price d-flex justify-content-center">
-                            <h4>PREMIER</h4>
-                        </div>
-                    </div>
-                    <div class="package-description">
-                        <p><i class="fa fa-check"></i> Lint</p>
-                        <p><i class="fa fa-check"></i> Household Dust</p>
-                        <p><i class="fa fa-check"></i> Pollen</p>
-                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
-                        <p><i class="fa fa-check"></i> Mold Spores</p>
-                        <p>Pet Dander</p>
-                        <p>Smoke</p>
-                        <p>Smog</p>
-                        <p>Cough/Sneeze</p>
-                        <p>Bacteria</p>
-                        <p>Virus Carriers</p>
-                    </div>
-                    <!-- Plan Button  -->
-                    <div class="plan-button">
-                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 1 } })'>
-                            <!--60-->
-                            Select this Quality
-                        </a>
-                    </div>
+            @foreach (var product in products.Items)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    @{
+                        Html.RenderPartial("Product.List.Quality.Item", product);
+                    }
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <!-- Package Price  -->
-                <div class="single-price-plan active text-center">
-                    <!-- Package Text  -->
-                    <div class="package-plan">
-                        <h5>MERV 11</h5>
-                        <div class="ca-price d-flex justify-content-center">
-                            <h4>PRESTIGE</h4>
-                        </div>
-                    </div>
-                    <div class="package-description">
-                        <p><i class="fa fa-check"></i> Lint</p>
-                        <p><i class="fa fa-check"></i> Household Dust</p>
-                        <p><i class="fa fa-check"></i> Pollen</p>
-                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
-                        <p><i class="fa fa-check"></i> Mold Spores</p>
-                        <p><i class="fa fa-check"></i> Pet Dander</p>
-                        <p><i class="fa fa-check"></i> Smoke</p>
-                        <p><i class="fa fa-check"></i> Smog</p>
-                        <p><i class="fa fa-check"></i> Cough/Sneeze</p>
-                        <p>Bacteria</p>
-                        <p>Virus Carriers</p>
-                    </div>
-                    <!-- Plan Button  -->
-                    <div class="plan-button">
-                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 61 } })'>
-                            Select this Quality
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <!-- Package Price  -->
-                <div class="single-price-plan text-center">
-                    <!-- Package Text  -->
-                    <div class="package-plan">
-                        <h5>MERV 13</h5>
-                        <div class="ca-price d-flex justify-content-center">
-                            <h4>ELITE</h4>
-                        </div>
-                    </div>
-                    <div class="package-description">
-                        <p><i class="fa fa-check"></i> Lint</p>
-                        <p><i class="fa fa-check"></i> Household Dust</p>
-                        <p><i class="fa fa-check"></i> Pollen</p>
-                        <p><i class="fa fa-check"></i> Dust Mites Debris</p>
-                        <p><i class="fa fa-check"></i> Mold Spores</p>
-                        <p><i class="fa fa-check"></i> Pet Dander</p>
-                        <p><i class="fa fa-check"></i> Smoke</p>
-                        <p><i class="fa fa-check"></i> Smog</p>
-                        <p><i class="fa fa-check"></i> Cough/Sneeze</p>
-                        <p><i class="fa fa-check"></i> Bacteria</p>
-                        <p><i class="fa fa-check"></i> Virus Carriers</p>
-                    </div>
-                    <!-- Plan Button  -->
-                    <div class="plan-button">
-                        <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , 1061 } })'>
-                            Select this Quality
-                        </a>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -306,7 +226,7 @@
         <div class="row">
             <div class="col-12">
                 <!-- Video Area Start -->
-                <div class="video-area" style="background-image: url(~/Content/Images/homepage/bg-img/video1.jpg);">
+                <div class="video-area" style="background-image: url(Content/Images/homepage/bg-img/video1.jpg);">
                     <div class="video-play-btn">
                         <a href="https://www.youtube.com/watch?v=J2zfg3sS7Qc" class="video_btn"><i class="fa fa-play" aria-hidden="true"></i></a>
                         <!--<a href="http://www.powtoon.com/embed/cPseAQfYsDS?autoplay=1" class="video_btn"><i class="fa fa-play" aria-hidden="true"></i></a> -->

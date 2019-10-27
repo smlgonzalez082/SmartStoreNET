@@ -26,12 +26,9 @@
             </div>
         </div>
 
-        <div class="row no-gutters">
-
-
+        <div class="row no-gutters">           
             @if (Model.PagedList.TotalCount > 0)
-            {
-
+            {          
                 foreach (var product in Model.Items)
                 {
                     <div class="col-12 col-md-6 col-lg-4">
@@ -39,11 +36,8 @@
                             Html.RenderPartial("Product.List.Quality.Item", product);
                         }
                     </div>
-                }
-
+                }  
             }
-
-
 
             @{
                 // Html.RenderPartial("Product.List.Quality", Model);

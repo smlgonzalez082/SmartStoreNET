@@ -1,0 +1,38 @@
+﻿@model ProductSummaryModel.SummaryItem
+@using System.Globalization;
+@using SmartStore.Web.Models.Catalog;
+@{
+    var artDetailUrl = Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "ProductId", Model.Id } });
+    var list = Model.Parent;
+    var picture = Model.Picture;
+
+    var showButtons = list.ShowButtons && (!Model.Price.DisableWishlistButton || list.CompareEnabled || (!Model.Price.DisableBuyButton && list.BuyEnabled));
+    var showVariants = (Model.ColorAttributes != null && Model.ColorAttributes.Any()) || (Model.Attributes != null && Model.Attributes.Any());
+    var showDrop = showButtons || showVariants;
+    var showAttrs = list.ViewMode == ProductSummaryViewMode.List && (list.ShowSku || list.ShowWeight || list.ShowDimensions);
+    var addPictureClass = picture.PictureId == 0 ? " no-picture" : "";
+    if (!picture.ImageUrl.HasValue())
+    {
+        addPictureClass += " no-default-picture";
+    } }
+
+<div class="single-price-plan active text-center">
+    <!-- Package Text  -->
+    <div class="package-plan">
+        <h5>@Model.Name</h5>
+        <div class="ca-price d-flex justify-content-center">
+            <h4>@Model.ShortDescription</h4>
+        </div>
+    </div>
+    <div class="package-description">
+
+        @foreach (var attribute in Model.SpecificationAttributes)
+        {
+            <p><i class="@(attribute.SpecificationAttributeOption == "1" ? "fa fa-check" : "")"></i> @attribute.SpecificationAttributeName</p>
+        }
+    </div>
+    <!-- Plan Button  -->
+    <div class="plan-button">
+        @{ Html.RenderPartial("Product.List.Quality.Item.Buttons", Model); }
+    </div>
+</div>     

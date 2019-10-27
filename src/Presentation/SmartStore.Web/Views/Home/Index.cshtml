@@ -1,41 +1,45 @@
 ﻿@{
-	Layout = "_Layout";
-	Html.AddBodyCssClass("home");
+    Layout = "_Layout";
+    Html.AddBodyCssClass("home");
 }
 
 <div class="page home-page">
     <div class="page-body">
-		@{
-			Html.RenderWidget("home_page_top");
+        @{
 
-			Html.RenderAction("TopicBlock", "Topic", new { systemName = "HomePageText", isLead = true });
-			Html.RenderWidget("home_page_after_intro");
+            // Html.RenderWidget("content_before");
+            /*
 
-			Html.RenderAction("HomepageCategories", "Catalog");
-			Html.RenderWidget("home_page_after_categories");
+            Html.RenderWidget("home_page_top");
 
-			Html.RenderAction("HomepageProducts", "Catalog");
-			Html.RenderWidget("home_page_after_products");
+            /*	Html.RenderAction("TopicBlock", "Topic", new { systemName = "HomePageText", isLead = true });
+                Html.RenderWidget("home_page_after_intro");
 
-			Html.RenderAction("HomepageBestSellers", "Catalog");
-			Html.RenderWidget("home_page_after_bestsellers");
+                Html.RenderAction("HomepageCategories", "Catalog");
+                Html.RenderWidget("home_page_after_categories");  */
 
-			Html.RenderAction("HomepageManufacturers", "Catalog");
-			Html.RenderWidget("home_page_after_manufacturers");
+            /*Html.RenderAction("HomepageProducts", "Catalog");  */
+            /*	Html.RenderWidget("home_page_after_products");
 
-			Html.RenderAction("PopularProductTags", "Catalog", new { area = "" });
-			Html.RenderWidget("home_page_after_tags");
+                Html.RenderAction("HomepageBestSellers", "Catalog");
+                Html.RenderWidget("home_page_after_bestsellers");
 
-			Html.RenderAction("HomePageNews", "News");
-			Html.RenderWidget("home_page_after_news");
+                Html.RenderAction("HomepageManufacturers", "Catalog");
+                Html.RenderWidget("home_page_after_manufacturers");
 
-			Html.RenderAction("HomePagePolls", "Poll");
-			Html.RenderWidget("home_page_after_polls");
+                Html.RenderAction("PopularProductTags", "Catalog", new { area = "" });
+                Html.RenderWidget("home_page_after_tags");
 
-			@* TODO: (mc) find more intelligent way of rendering RecentlyViewedProductsBlock globally *@
-            Html.RenderAction("RecentlyViewedProductsBlock", "Catalog", new { area = "" });
+                Html.RenderAction("HomePageNews", "News");
+                Html.RenderWidget("home_page_after_news");
 
-            Html.RenderWidget("home_page_bottom");
-		}
+                Html.RenderAction("HomePagePolls", "Poll");
+                Html.RenderWidget("home_page_after_polls");
+
+                @* TODO: (mc) find more intelligent way of rendering RecentlyViewedProductsBlock globally *@
+                Html.RenderAction("RecentlyViewedProductsBlock", "Catalog", new { area = "" });
+
+                Html.RenderWidget("home_page_bottom"); */
+        }
     </div>
 </div>
