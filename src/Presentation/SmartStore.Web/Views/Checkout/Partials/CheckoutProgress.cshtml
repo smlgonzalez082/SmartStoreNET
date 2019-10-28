@@ -10,7 +10,8 @@ StepName = "cart",
 Label =  T("Checkout.Progress.Cart").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Cart,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Cart,
-Href = Url.RouteUrl("ShoppingCart")
+Href = Url.RouteUrl("ShoppingCart"),
+VisibleXS = true
 },
 // Address
 new {
@@ -19,7 +20,8 @@ StepName = "address",
 Label =  T("Checkout.Progress.Address").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Address,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Address,
-Href = Url.Action("BillingAddress")
+Href = Url.Action("BillingAddress") ,
+VisibleXS = false
 },
 // Shipping
 new {
@@ -28,7 +30,8 @@ StepName = "shipping",
 Label =  T("Checkout.Progress.Shipping").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Shipping,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Shipping,
-Href = Url.Action("ShippingMethod")
+Href = Url.Action("ShippingMethod") ,
+VisibleXS = false
 },
 // Payment
 new {
@@ -37,7 +40,8 @@ StepName = "payment",
 Label =  T("Checkout.Progress.Payment").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Payment,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Payment,
-Href = Url.Action("PaymentMethod")
+Href = Url.Action("PaymentMethod"),
+VisibleXS = true
 },
 // Confirm
 new {
@@ -46,7 +50,8 @@ StepName = "confirm",
 Label =  T("Checkout.Progress.Confirm").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Confirm,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Confirm,
-Href = Url.Action("Confirm")
+Href = Url.Action("Confirm"),
+VisibleXS = false
 },
 // Complete
 new {
@@ -55,7 +60,8 @@ StepName = "complete",
 Label =  T("Checkout.Progress.Complete").Text,
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Complete,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Complete,
-Href = "javascript:void(0)"
+Href = "javascript:void(0)" ,
+VisibleXS = true
 }
 };
 }
@@ -63,36 +69,38 @@ Href = "javascript:void(0)"
 
 
 
-<div class="container clearfix " style="padding-left:0; margin-left:-35px;">
-    <div class="costeps row no-gutters" style="flex-wrap:nowrap">
+<!--<div class="container clearfix " style="padding-left:0; margin-left:-35px;"> -->
+    <div class="container clearfix ">
+        <div class="costeps row no-gutters" style="flex-wrap:nowrap">
 
-        @{ Html.RenderWidget("checkout_steps_before"); }
+            @{ Html.RenderWidget("checkout_steps_before"); }
 
 
-        @foreach (var p in progresses)
-        {
-            string stateClass = null;
-            string href = p.Visited || p.Active ? p.Href : "javascript:void(0)";
-            if (p.Visited)
+            @foreach (var p in progresses)
             {
-                stateClass = "visited";
+                string stateClass = null;
+                string href = p.Visited || p.Active ? p.Href : "javascript:void(0)";
+                if (p.Visited)
+                {
+                    stateClass = "visited";
+                }
+                else if (p.Active)
+                {
+                    stateClass = "active";
+                }
+                else
+                {
+                    stateClass = "inactive";
+                }
+
+                <div class="col-2 costep @stateClass @(!p.VisibleXS ? "hidden-xs" : "")" data-step="@p.StepName" style="flex:0 0 11%">
+                    <a class="costep-link" href="@href">
+                        <i class="costep-icon"></i>
+                        <span class="costep-label">@p.Label</span>
+                    </a>
+                </div>
             }
-            else if (p.Active)
-            {
-                stateClass = "active";
-            }
-            else
-            {
-                stateClass = "inactive";
-            }
-            <div class="col-2 costep @stateClass" data-step="@p.StepName" style="flex:0 0 11%">
-                <a class="costep-link" href="@href">
-                    <i class="costep-icon"></i>
-                    <span class="costep-label">@p.Label</span>
-                </a>
-            </div>
-        }
+        </div>
+
+        @{ Html.RenderWidget("checkout_steps_after"); }
     </div>
-
-    @{ Html.RenderWidget("checkout_steps_after"); }
-</div>

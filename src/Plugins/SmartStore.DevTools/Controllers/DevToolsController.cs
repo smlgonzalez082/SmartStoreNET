@@ -148,6 +148,7 @@ namespace SmartStore.DevTools.Controllers
             var searchResult = _catalogSearchService.Search(query);
             var mappingSettings = _helper.GetBestFitProductSummaryMappingSettings(query.GetViewMode());
             mappingSettings.MapSpecificationAttributes = true;
+            mappingSettings.MapFullDescription = true;
             ViewBag.Products = _helper.MapProductSummaryModel(searchResult.Hits, mappingSettings);
 
 

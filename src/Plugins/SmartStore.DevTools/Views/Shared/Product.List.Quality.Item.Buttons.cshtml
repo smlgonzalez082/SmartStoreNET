@@ -5,8 +5,7 @@
     var list = Model.Parent;
     var price = Model.Price;
     //var artDetailUrl = Url.RouteUrl("Product", new RouteValueDictionary { { "SeName", Model.SeName } });
-}
-
+}       
 
 @{
     var cssClasses = false ? "btn-block d-none d-md-block" : "x-btn-icon btn-lg art-btn col";
@@ -15,7 +14,7 @@
     {
         <a href='@Url.RouteUrl("QuantityStep", new RouteValueDictionary { { "productId" , Model.Id } })'
            class="btn btn-primary  @cssClasses">
-            <i class="fa fa-cart-arrow-down"></i>
+            <i class="fa fa-plus"></i>
             @if (true)
             {
                 <span>Select This Quality</span>
@@ -23,5 +22,4 @@
 
         </a>
     }
-}
-
+}                       

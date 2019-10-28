@@ -25,11 +25,30 @@
         </div>
     </div>
     <div class="package-description">
+        <div class="visible-xs">
+            <div class="col-12 col-md-3">
+                <div class="single-special single-special-xs text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="single-icon">
+                        <i class="fal fa-snowflake" aria-hidden="true"></i>
+                    </div>
+                    <p>@Model.FullDescription</p>
+                    @foreach (var attribute in Model.SpecificationAttributes)
+                    {
+                        if (attribute.SpecificationAttributeOption == "1")
+                        {
+                            <span><i class="@(attribute.SpecificationAttributeOption == "1" ? "fa fa-check" : "")"></i> @attribute.SpecificationAttributeName</span>
+                        }     
+                    }
+                </div>
+            </div>
+        </div>                     
 
-        @foreach (var attribute in Model.SpecificationAttributes)
-        {
-            <p><i class="@(attribute.SpecificationAttributeOption == "1" ? "fa fa-check" : "")"></i> @attribute.SpecificationAttributeName</p>
-        }
+        <div class="hidden-xs">
+            @foreach (var attribute in Model.SpecificationAttributes)
+            {
+                <p><i class="@(attribute.SpecificationAttributeOption == "1" ? "fa fa-check" : "")"></i> @attribute.SpecificationAttributeName</p>
+            }
+        </div>
     </div>
     <!-- Plan Button  -->
     <div class="plan-button">
