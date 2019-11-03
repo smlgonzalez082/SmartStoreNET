@@ -169,30 +169,62 @@
     </Compile>
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Blocks\SampleBlock.cs" />
-    <Compile Include="Controllers\DevToolsController.cs" />
-    <Compile Include="Controllers\MyCheckoutController.cs" />
+    <Compile Include="Controllers\DevToolsController.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\MyCheckoutController.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Events\CustomTab.cs" />
     <Compile Include="Examples\OutputCacheInvalidationObserver.cs" />
-    <Compile Include="Filters\MachineNameFilter.cs" />
-    <Compile Include="Filters\FooterFilter.cs" />
-    <Compile Include="Filters\HeaderFilter.cs" />
-    <Compile Include="Filters\HomePageFilter.cs" />
-    <Compile Include="Filters\QualityStepFilter.cs" />
-    <Compile Include="Filters\QuantityStepFilter.cs" />
-    <Compile Include="Filters\ScheduleStepFilter.cs" />
-    <Compile Include="Filters\SizeStepFilter.cs" />
-    <Compile Include="Filters\SliderFilter.cs" />
+    <Compile Include="Filters\MachineNameFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\FooterFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\HeaderFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\HomePageFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\QualityStepFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\QuantityStepFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\ScheduleStepFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\SizeStepFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Filters\SliderFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Filters\Samples\SampleProductDetailActionFilter.cs" />
-    <Compile Include="Filters\WidgetZoneFilter.cs" />
+    <Compile Include="Filters\WidgetZoneFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Filters\Samples\SampleCheckoutFilter.cs" />
-    <Compile Include="Filters\ProfilerFilter.cs" />
+    <Compile Include="Filters\ProfilerFilter.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Filters\Samples\SampleResultFilter.cs" />
     <Compile Include="Filters\Samples\SampleActionFilter.cs" />
     <Compile Include="DevToolsPlugin.cs" />
-    <Compile Include="Models\FrecuencyModel.cs" />
-    <Compile Include="Models\QuantityModel.cs" />
-    <Compile Include="Models\BackendExtensionModel.cs" />
+    <Compile Include="Models\FrecuencyModel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Models\QuantityModel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Models\BackendExtensionModel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="ProfilerHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteProvider.cs" />
@@ -239,33 +271,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\MyCheckout\MyBillingAddress.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\MiniProfiler.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\Configure.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\WidgetZone.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\BackendExtension.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\MachineName.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\ProductEditTab.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Story\BlockTemplates\Sample\Edit.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -274,40 +306,40 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\SizeStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\Footer.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\Header.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\HomePage.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\QualityStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\QuantityStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\ScheduleStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\DevTools\Slider.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\MyCheckout\SizeStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\MyCheckout\QualityStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\MyCheckout\QuantityStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\MyCheckout\ScheduleStep.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Product.Variants.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

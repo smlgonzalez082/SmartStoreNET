@@ -783,15 +783,33 @@
     <Content Include="Content\bs4\js\bootstrap.bundle.min.js" />
     <Content Include="Content\bs4\js\bootstrap.js" />
     <Content Include="Content\bs4\js\bootstrap.min.js" />
-    <Content Include="Content\css\animate.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\font-awesome.min.css" />
-    <Content Include="Content\css\ionicons.min.css" />
-    <Content Include="Content\css\magnific-popup.css" />
-    <Content Include="Content\css\owl.carousel.min.css" />
-    <Content Include="Content\css\responsive.css" />
-    <Content Include="Content\css\slick.css" />
-    <Content Include="Content\css\themify-icons.css" />
+    <Content Include="Content\css\animate.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\font-awesome.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\ionicons.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\magnific-popup.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\owl.carousel.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\responsive.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\slick.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\themify-icons.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\editors\CodeMirror\addon\display\fullscreen.css" />
     <Content Include="Content\editors\CodeMirror\addon\fold\xml-fold.min.js" />
     <Content Include="Content\editors\CodeMirror\addon\selection\active-line.min.js" />
@@ -853,53 +871,135 @@
     <Content Include="Content\editors\summernote\summernote-bs4.css" />
     <Content Include="Content\editors\summernote\summernote-bs4.js" />
     <Content Include="Content\editors\summernote\summernote-bs4.min.js" />
-    <Content Include="Content\fontastic\fontastic.css" />
-    <Content Include="Content\fontastic\fonts\fontastic.svg" />
-    <Content Include="Content\fontastic\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\fontastic\fonts\ionicons.svg" />
-    <Content Include="Content\fontastic\fonts\themify.svg" />
+    <Content Include="Content\fontastic\fontastic.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontastic.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\ionicons.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\themify.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fonts\fontastic.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\ionicons.svg" />
     <Content Include="Content\fonts\themify.svg" />
-    <Content Include="Content\Images\grip-h.png" />
-    <Content Include="Content\Images\grip-ne.png" />
-    <Content Include="Content\Images\grip-se.png" />
-    <Content Include="Content\Images\grip-v.png" />
-    <Content Include="Content\Images\homepage\bg-img\client-1.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-2.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-3.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-4.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-5.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-6.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\client-7.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\mobile-1.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\special.png" />
-    <Content Include="Content\Images\homepage\bg-img\video.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\video1.jpg" />
-    <Content Include="Content\Images\homepage\bg-img\welcome-bg.png" />
-    <Content Include="Content\Images\homepage\bg-img\welcome-img.png" />
-    <Content Include="Content\Images\homepage\bg-img\welcome-img1.png" />
-    <Content Include="Content\Images\homepage\bg-img\welcome-img2.png" />
-    <Content Include="Content\Images\homepage\bg-img\welcome-img3.png" />
-    <Content Include="Content\Images\homepage\core-img\favicon.ico" />
-    <Content Include="Content\Images\slider\background.png" />
-    <Content Include="Content\Images\slider\truck1.png" />
-    <Content Include="Content\Images\slider\truck2.png" />
-    <Content Include="Content\Images\slider\truck3.png" />
-    <Content Include="Content\Images\slider\truck4.jpg" />
-    <Content Include="Content\Images\slider\truck5.jpg" />
-    <Content Include="Content\Images\slider\truck6.png" />
-    <Content Include="Content\js\active.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\footer-reveal.min.js" />
-    <Content Include="Content\js\jquery-2.2.4.min.js" />
-    <Content Include="Content\js\plugins.js" />
-    <Content Include="Content\js\popper.min.js" />
-    <Content Include="Content\js\slick.min.js" />
+    <Content Include="Content\Images\grip-h.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\grip-ne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\grip-se.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\grip-v.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\client-7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\mobile-1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\special.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\video.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\video1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\welcome-bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\welcome-img.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\welcome-img1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\welcome-img2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\bg-img\welcome-img3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\homepage\core-img\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\slider\truck6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\active.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\footer-reveal.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\jquery-2.2.4.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\plugins.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\popper.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\js\slick.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\placeholder.txt" />
     <Content Include="Content\print-rtl.css" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\style.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\vendors\aos\js\aos.js" />
     <Content Include="Content\vendors\beautify\beautify-css.min.js" />
     <Content Include="Content\vendors\beautify\beautify-html.min.js" />
@@ -948,10 +1048,18 @@
     <Content Include="Content\vendors\font-awesome\fontawesome-webfont.woff2" />
     <Content Include="Content\vendors\font-awesome\FontAwesome.otf" />
     <Content Include="Content\vendors\font-awesome\fontawesome-webfont.svg" />
-    <Content Include="Content\Images\default-image-alt.png" />
-    <Content Include="Content\Images\default-image.png" />
-    <Content Include="Content\Images\grippy.png" />
-    <Content Include="Content\Images\sad.png" />
+    <Content Include="Content\Images\default-image-alt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\default-image.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\grippy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\sad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\print.css" />
     <Content Include="Content\vendors\colorpicker\js\bootstrap-colorpicker-globalinit.js" />
     <Content Include="Content\vendors\colorpicker\js\bootstrap-colorpicker.js" />
@@ -1111,17 +1219,39 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\shared\_tree.scss" />
-    <Content Include="Content\fontastic\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fontastic\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fontastic\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fontastic\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fontastic\fonts\FontAwesome.otf" />
-    <Content Include="Content\fontastic\fonts\ionicons.eot" />
-    <Content Include="Content\fontastic\fonts\ionicons.ttf" />
-    <Content Include="Content\fontastic\fonts\ionicons.woff" />
-    <Content Include="Content\fontastic\fonts\themify.eot" />
-    <Content Include="Content\fontastic\fonts\themify.ttf" />
-    <Content Include="Content\fontastic\fonts\themify.woff" />
+    <Content Include="Content\fontastic\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\ionicons.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\ionicons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\ionicons.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\themify.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\themify.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\themify.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fonts\fontastic.ttf" />
     <Content Include="Content\fonts\fontastic.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
@@ -1268,8 +1398,12 @@
     <Content Include="Content\skinning\_fileupload.scss" />
     <Content Include="Content\skinning\_pnotify.scss" />
     <Content Include="Content\skinning\_select2.scss" />
-    <Content Include="Content\fontastic\fonts\fontastic.ttf" />
-    <Content Include="Content\fontastic\fonts\fontastic.woff" />
+    <Content Include="Content\fontastic\fonts\fontastic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fontastic\fonts\fontastic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\vendors\jquery\jquery.validate-vsdoc.js" />
     <Content Include="Content\vendors\jquery\jquery.validate.js" />
     <Content Include="Content\vendors\jquery\jquery.validate.min.js" />
@@ -1336,12 +1470,22 @@
     <Content Include="Themes\Flex\Content\images\grippy.png" />
     <Content Include="Themes\Flex\Content\_megamenu.scss" />
     <Content Include="Themes\Flex\preview.png" />
-    <Content Include="Content\Images\star-off-12.png" />
-    <Content Include="Content\Images\star-off.png" />
-    <Content Include="Content\Images\star-on-12.png" />
-    <Content Include="Content\Images\star-on.png" />
+    <Content Include="Content\Images\star-off-12.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\star-off.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\star-on-12.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\star-on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\editors\BBEditor\ed.js" />
-    <Content Include="Content\Images\ajax_loader_small.gif" />
+    <Content Include="Content\Images\ajax_loader_small.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Images\flags\ad.png" />
     <Content Include="Content\Images\flags\ae.png" />
     <Content Include="Content\Images\flags\af.png" />

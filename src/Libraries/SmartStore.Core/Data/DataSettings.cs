@@ -74,7 +74,7 @@ namespace SmartStore.Core.Data
                 //s_installed = Current.IsValid();
             }
 
-			return s_installed.Value;
+            return s_installed.Value;
 		}
 
 		internal static void SetTestMode(bool isTestMode)

@@ -41,9 +41,10 @@
             // @RenderSection("header")
             <!-- ***** Top Header Area Start ***** -->
 
-            if (ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() != "Home")
+            if (ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() != "Home" ||
+                ViewContext.RouteData.GetRequiredString("action").ToString() == "ContactUs"
+                )
             {
-
                 <section class="header_top_area clearfix">
                     <div class="container h-30">
                         <div class="row h-30 align-items-center">
@@ -51,12 +52,9 @@
                         </div>
                     </div>
                 </section>
-            }
+            }       
 
-
-            Html.RenderWidget("header_menu_before");
-
-
+            Html.RenderWidget("header_menu_before");                   
         }
         else
         {
@@ -81,7 +79,7 @@
                             @{ Html.SmartStore().Menu().Name("Main").Render(); }
                         </div>
                     </nav>
-                </div>   -->
+                </div>  
             </header>
         }
 
@@ -89,11 +87,10 @@
             @{
                 Html.RenderAction("JavaScriptDisabledWarning", "Common", new { area = "" });
 
-                if (Request.Url.PathAndQuery == "/" || Request.Url.PathAndQuery == "/qa/" || Request.Url.PathAndQuery == "/app/")  //if (Request.Url.PathAndQuery == "/qa/")
+                if (Request.Url.PathAndQuery == "/" || Request.Url.PathAndQuery == "/qa/" || Request.Url.PathAndQuery == "/app/" || Request.Url.PathAndQuery == "/flofiltersApp/")  //if (Request.Url.PathAndQuery == "/qa/")
                 {
                     Html.RenderWidget("content_before");
-                }
-
+                }     
             }
             <section id="content" class="container">
                 @{
@@ -137,8 +134,7 @@
                     @{ Html.RenderWidget("content_after"); }
                 </div>
             </section>
-        </div>
-
+        </div>        
 
         @{ Html.RenderZone("page-end"); }
     </div>

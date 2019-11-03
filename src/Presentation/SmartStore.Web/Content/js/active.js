@@ -78,7 +78,8 @@
         $('footer').footerReveal({
             shadow: true,
             shadowOpacity: 0.3,
-            zIndex: -101
+            zIndex: 0
+            //zIndex: -101
         });
     }
 
