@@ -52,9 +52,9 @@
                         </div>
                     </div>
                 </section>
-            }       
+            }
 
-            Html.RenderWidget("header_menu_before");                   
+            Html.RenderWidget("header_menu_before");
         }
         else
         {
@@ -62,7 +62,7 @@
                 <div class="menubar-section d-none d-lg-block @(GetThemeVariable<bool>("inverse-menubar") ? "menubar-inverse" : "menubar-light")">
                     <div class="container menubar-container">
                         @{
-                            Html.RenderAction("TopBar", "Common", new { area = "" });
+                           // Html.RenderAction("TopBar", "Common", new { area = "" });
                         }
                     </div>
                 </div>
@@ -76,10 +76,11 @@
                 <div class="megamenu-section d-none d-lg-block">
                     <nav class='navbar @(GetThemeVariable<bool>("inverse-navbar") ? "navbar-inverse" : "navbar-light")'>
                         <div class="container megamenu-container">
-                            @{ Html.SmartStore().Menu().Name("Main").Render(); }
+                            @{// Html.SmartStore().Menu().Name("Main").Render();
+                            }
                         </div>
                     </nav>
-                </div>  
+                </div>
             </header>
         }
 
@@ -90,7 +91,7 @@
                 if (Request.Url.PathAndQuery == "/" || Request.Url.PathAndQuery == "/qa/" || Request.Url.PathAndQuery == "/app/" || Request.Url.PathAndQuery == "/flofiltersApp/")  //if (Request.Url.PathAndQuery == "/qa/")
                 {
                     Html.RenderWidget("content_before");
-                }     
+                }
             }
             <section id="content" class="container">
                 @{
@@ -134,7 +135,7 @@
                     @{ Html.RenderWidget("content_after"); }
                 </div>
             </section>
-        </div>        
+        </div>
 
         @{ Html.RenderZone("page-end"); }
     </div>

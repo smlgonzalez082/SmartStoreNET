@@ -46,13 +46,13 @@
         max-height: 60px;
         text-align: center;
 
-        @media (min-width: 480px) {
+        /*@media (min-width: 480px) {
             & { max-width: 200px; max-height: 80px; width: auto; }
         }
 
         @include media-breakpoint-up(lg) {
             & { max-width: 250px; max-height: 100px; width: auto; }
-        }
+        }     */
     }
 }
 

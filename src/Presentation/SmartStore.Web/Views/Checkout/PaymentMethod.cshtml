@@ -10,104 +10,119 @@
     @{ Html.RenderAction("CheckoutProgress", "Checkout", new { step = CheckoutProgressStep.Payment }); }
 }
 
-<div class="page payment-method-page">
-    <div class="page-title">
-        <h1 class="h3">@T("Checkout.SelectPaymentMethod")</h1>
+<section class="step-area section_padding_0_50 clearfix" id="contact">
+    <div class="container">
+        <div class="page payment-method-page">
+            @*<div class="page-title">
+                    <h1 class="h3">@T("Checkout.SelectPaymentMethod")</h1>
+                </div>*@
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-heading section-heading-checkout">
+                        <h2>Select Payment Method</h2>
+                        <div class="line-shape"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-body checkout-data">
+                @using (Html.BeginForm())
+                {
+                    Html.RenderWidget("checkout_payment_method_top");
+
+                    if (Model.PaymentMethods.Count > 0)
+                    {
+                        <ul class="list-group opt-list payment-methods">
+                            @for (int i = 0; i < Model.PaymentMethods.Count; i++)
+                            {
+                                var paymentMethod = Model.PaymentMethods[i];
+                                var infoRoute = paymentMethod.PaymentInfoRoute;
+                                var description = paymentMethod.FullDescription?.Value;
+
+                                <li class="list-group-item opt-list-item payment-method-item@(paymentMethod.Selected ? " active" : "")">
+                                    <div class="opt-data">
+                                        <div class="form-check opt-control option-name radio">
+
+                                            <input id="paymentmethod_@(i)" type="radio" name="paymentmethod"
+                                                   @Html.Attr("checked", "checked", paymentMethod.Selected)
+                                                   data-has-info='@(infoRoute != null ? "true" : "false")'
+                                                   data-lazy-info='@(paymentMethod.RequiresInteraction ? "true" : "false")'
+                                                   class="opt-radio form-check-input"
+                                                   value="@(paymentMethod.PaymentMethodSystemName)" />
+
+                                            <label class="form-check-label" for="paymentmethod_@(i)">
+                                                <span class="opt-name">@paymentMethod.Name</span>
+                                            </label>
+                                        </div>
+                                        @if (paymentMethod.Fee.HasValue())
+                                        {
+                                            <small class="opt-fee payment-fee text-danger">@paymentMethod.Fee</small>
+                                        }
+                                    </div>
+
+                                    @if (description.HasValue())
+                                    {
+                                        <div class="opt-info-item payment-method-description" @Html.LanguageAttributes(paymentMethod.FullDescription)>
+                                            @Html.Raw(description)
+                                        </div>
+                                    }
+
+                                    @if (!paymentMethod.RequiresInteraction || (paymentMethod.Selected && infoRoute != null))
+                                    {
+                                        <div class="opt-info payment-method-info"
+                                             @Html.Attr("data-lazy-info", "true", paymentMethod.RequiresInteraction)
+                                             data-system-name="@paymentMethod.PaymentMethodSystemName">
+
+                                            @if (paymentMethod.Selected && !ViewData.ModelState.IsValid)
+                                            {
+                                                <div id="payment-info-validation-summary">
+                                                    @Html.ValidationSummary(false)
+                                                </div>
+                                            }
+
+                                            @if (!(description.HasValue() && !paymentMethod.RequiresInteraction))
+                                            {
+                                                Html.RenderAction(infoRoute.Action, infoRoute.Controller, infoRoute.RouteValues);
+                                            }
+                                        </div>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            @T("Checkout.NoPaymentMethods")
+                        </div>
+                    }
+
+                    if (Model.PaymentMethods.Count > 0)
+                    {
+                        <div class="buttons">
+                            <div class="back-button text-center">
+                                <a href="@Url.Action("ShippingMethod")">
+                                    <i class="fa fa-angle-left"></i>
+                                    <span>@T("Common.Back")</span>
+                                </a>
+                            </div>
+                            <input type="submit" name="nextstep" id="nextstep" class="d-none" />
+
+                            <button class="btn submit-btn btn-lg payment-method-next-step-button" onclick="$('#nextstep').trigger('click');return false;">
+                                <span>@T("Checkout.NextButton")</span>
+                                <i class="fa fa-angle-right"></i>
+                            </button>
+                        </div>
+                    }
+
+                    Html.RenderWidget("checkout_payment_method_bottom");
+                }
+            </div>
+        </div>
     </div>
-    <div class="page-body checkout-data">
-        @using (Html.BeginForm())
-        {
-            Html.RenderWidget("checkout_payment_method_top");
 
-			if (Model.PaymentMethods.Count > 0)
-			{
-				<ul class="list-group opt-list payment-methods">
-					@for (int i = 0; i < Model.PaymentMethods.Count; i++)
-					{
-						var paymentMethod = Model.PaymentMethods[i];
-						var infoRoute = paymentMethod.PaymentInfoRoute;
-						var description = paymentMethod.FullDescription?.Value;
-
-						<li class="list-group-item opt-list-item payment-method-item@(paymentMethod.Selected ? " active" : "")">
-							<div class="opt-data">
-								<div class="form-check opt-control option-name radio">
-									
-									<input id="paymentmethod_@(i)" type="radio" name="paymentmethod"
-										   @Html.Attr("checked", "checked", paymentMethod.Selected)
-										   data-has-info='@(infoRoute != null ? "true" : "false")'
-										   data-lazy-info='@(paymentMethod.RequiresInteraction ? "true" : "false")'
-										   class="opt-radio form-check-input"
-										   value="@(paymentMethod.PaymentMethodSystemName)" />
-
-									<label class="form-check-label" for="paymentmethod_@(i)">
-										<span class="opt-name">@paymentMethod.Name</span>
-									</label>
-								</div>
-								@if (paymentMethod.Fee.HasValue())
-								{
-									<small class="opt-fee payment-fee text-danger">@paymentMethod.Fee</small>
-								}
-							</div>
-
-							@if (description.HasValue())
-							{
-								<div class="opt-info-item payment-method-description" @Html.LanguageAttributes(paymentMethod.FullDescription)>
-									@Html.Raw(description)
-								</div>
-							}
-
-							@if (!paymentMethod.RequiresInteraction || (paymentMethod.Selected && infoRoute != null))
-							{
-								<div class="opt-info payment-method-info" 
-									 @Html.Attr("data-lazy-info", "true", paymentMethod.RequiresInteraction) 
-									 data-system-name="@paymentMethod.PaymentMethodSystemName">
-
-									@if (paymentMethod.Selected && !ViewData.ModelState.IsValid)
-									{
-										<div id="payment-info-validation-summary">
-											@Html.ValidationSummary(false)
-										</div>
-									}
-
-									@if (!(description.HasValue() && !paymentMethod.RequiresInteraction))
-									{
-										Html.RenderAction(infoRoute.Action, infoRoute.Controller, infoRoute.RouteValues);
-									}
-								</div>
-							}
-						</li>
-					}
-				</ul>
-			}
-			else
-			{
-				<div class="alert alert-danger">
-					@T("Checkout.NoPaymentMethods")
-				</div>
-			}
-			
-			if (Model.PaymentMethods.Count > 0)
-			{
-				<div class="buttons">
-					<a class="btn btn-secondary btn-lg" href="@Url.Action("ShippingMethod")">
-                        <i class="fa fa-angle-left"></i>
-                        <span>@T("Common.Back")</span>
-					</a>    
-					<input type="submit" name="nextstep" id="nextstep" class="d-none" />
-
-					<button class="btn btn-warning btn-lg payment-method-next-step-button" onclick="$('#nextstep').trigger('click');return false;">
-						<span>@T("Checkout.NextButton")</span>
-						<i class="fa fa-angle-right"></i>
-					</button>
-				</div>				
-            }
-
-            Html.RenderWidget("checkout_payment_method_bottom");
-        }
-    </div>
-</div>
-
-<script>
+    </section>
+    <script>
 	$(function () {
 
 		var validationSummary = $('#payment-info-validation-summary');
@@ -136,7 +151,7 @@
                     .removeClass('fa-angle-right fa-spinner fa-spin')
                     .addClass(disable ? 'fa-spinner fa-spin' : 'fa-angle-right');
             };
-			
+
 			$('.checkout-data .opt-list-item').removeClass('active');
 
 			var item = radio.closest('.opt-list-item');
@@ -182,4 +197,4 @@
 			});
 		});
 	});
-</script>
+    </script>

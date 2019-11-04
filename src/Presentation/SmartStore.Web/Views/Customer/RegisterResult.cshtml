@@ -20,17 +20,20 @@
 }
 
 <div class="page registration-result-page">
-    <div class="page-title">
-        <h1>@T("Account.Register")</h1>
+       <div class="col-12 text-center">
+        <div class="section-heading section-heading-checkout">
+            <h2>@T("Account.Register")</h2>
+            <div class="line-shape"></div>
+        </div>
     </div>
 
-    <div class="page-body">        
+    <div class="page-body">
         <p class="section-body">
             @Model.Result
         </p>
 
         <div class="buttons">
-            <a class="btn btn-secondary register-continue-button" href="@continueUrl">
+            <a class="btn submit-btn register-continue-button" href="@continueUrl">
                 @T("Account.Register.Result.Continue")
             </a>
         </div>

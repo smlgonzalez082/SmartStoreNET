@@ -6,98 +6,123 @@
 @using SmartStore.Web.Models.Catalog;
 @using SmartStore.Web.Framework.UI;
 @using SmartStore.Web;
-@{               
-                Layout = "_Checkout";                       
+@{
+    Layout = "_Checkout";
 
-                var canonicalUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, this.Request.Url.Scheme);
-                if (Model.CanonicalUrlsEnabled)
-                {
-                    Html.AddCanonicalUrlParts(canonicalUrl);
-                }
-                int cursor = 0;
+    var canonicalUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+    //if (Model.CanonicalUrlsEnabled)
+    //{
+    //    Html.AddCanonicalUrlParts(canonicalUrl);
+    //}
+    int cursor = 0;
 
-                string updateUrl = Url.Action("UpdateProductDetails", "MyCheckout", new
-                {
-                    productId = Model.Id,
-                    bundleItemId = Model.BundleItem.Id,
-                    itemType = (string)null // TODO: (mc) WTF!?
-                });                
+    string updateUrl = Url.Action("UpdateProductDetails", "MyCheckout", new
+    {
+        productId = Model.Id,
+        bundleItemId = Model.BundleItem.Id,
+        itemType = (string)null // TODO: (mc) WTF!?
+    });
 
-                // updateUrl = "/MyCheckout/UpdateProductDetails?productId=60&bundleItemId=0";
-                updateUrl = "/MyCheckout/UpdateProductDetails?productId=1&bundleItemId=0";   
+    // updateUrl = "/MyCheckout/UpdateProductDetails?productId=60&bundleItemId=0";
+    updateUrl = "/MyCheckout/UpdateProductDetails?productId=1&bundleItemId=0";
 }
 
 @section orderProgress{
     @{ Html.RenderAction("CheckoutProgress", "Checkout", new { step = CheckoutProgressStep.Size, area = "" }); }
 }
 
-<div class="page product-details-page">
-    @*@{ Html.RenderWidget("productdetails_top"); }*@
 
-    @for (int i = 0; i < ViewBag.countfilters; i++)
-    {
-        cursor = i + 1;
-        Model.AttributeInfo = i.ToString();
-
-        <article class="pd page-body" itemscope itemtype="http://schema.org/Product">
-            <div id="main-update-container" class="update-container" data-url="@updateUrl">
-                @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "pd-form-" + Model.AttributeInfo }))
-                {
-                    <!-- Top Content: Picture, Description, Attrs, Variants, Bundle Items, Price etc. -->
-                    <section class="row pd-section pd-section-top">
-                        <!-- Picture -->
-                        <div class="col-12 col-md-6 col-lg-7 pd-data-col" style="display:none">
-                            @{ Html.RenderWidget("productdetails_pictures_top"); }
-
-                            <div id="pd-gallery-container" style="display:none">
-                                @{ Html.RenderPartial("Product.Picture", Model.DetailsPictureModel); }
-                            </div>
-
-                            @{ Html.RenderWidget("productdetails_pictures_bottom"); }
-                        </div>
-
-                        <!-- Sidebar: Info, Price, Buttons etc. -->
-                        <aside class="col-12 col-md-12 col-lg-12 pd-info-col zoom-window-container">
-
-                            @{ Html.RenderWidget("productdetails_info_top"); }
-                            <!-- Title/Brand/ReviewSummary -->
-                            <span class="font-weight-bold">Filter # @cursor</span>
-
-                            @if (Model.ProductType != ProductType.GroupedProduct)
-                            {
-                                Html.RenderWidget("productdetails_attrs_top");
-
-                                <!-- Offer box -->
-                                Html.RenderPartial("Product.Offer", Model);
-                            }
-
-                            @{ Html.RenderWidget("productdetails_info_bottom"); }
-                        </aside>           
-                    </section>   
-                }
-            </div>
-        </article>  
-    }
-
-    <div class="page-body checkout-data text-center"> 
-        @using (Html.BeginForm())
-        {
-            <div class="buttons">
-                <div class="back-button">
-                    <a href="@Url.RouteUrl("QuantityStep",  new { productId = Model.Id, quantity = ViewBag.countfilters })">
-                        <i class="fa fa-angle-left"></i>
-                        <span>@T("Common.Back")</span>
-                    </a>
+<section class="step-area section_padding_0_50 clearfix" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="section-heading section-heading-checkout">
+                    <h2>Size(s)</h2>
+                    <div class="line-shape"></div>
                 </div>
-                <input type="submit" id="nextstep" name="nextstep" class="d-none" />
-                <a class="btn submit-btn btn-lg new-address-next-step-button" href="@Url.RouteUrl("ScheduleStep",  new { quantity = ViewBag.countfilters })">
-                    <span>@T("Checkout.NextButton")</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </div>    
-        }     
+            </div>
+        </div>
+        <div class="page product-details-page">
+            @*@{ Html.RenderWidget("productdetails_top"); }*@
+            <div class="form-group row text-center">
+                <div class="col-12 text-muted ">
+                    @T("Common.FormFields.Required.Hint")
+                </div>
+            </div>
+            @for (int i = 0; i < ViewBag.countfilters; i++)
+            {
+                cursor = i + 1;
+                Model.AttributeInfo = i.ToString();
+
+                <article class="pd page-body">
+                    <div id="main-update-container" class="update-container" data-url="@updateUrl">
+                        @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "pd-form-" + Model.AttributeInfo }))
+                        {
+                            <!-- Top Content: Picture, Description, Attrs, Variants, Bundle Items, Price etc. -->
+                            <section class="row pd-section pd-section-top">
+                                <!-- Picture -->
+                                <div class="col-12 col-md-6 col-lg-7 pd-data-col" style="display:none">
+                                    @{ Html.RenderWidget("productdetails_pictures_top"); }
+
+                                    <div id="pd-gallery-container" style="display:none">
+                                        @{ Html.RenderPartial("Product.Picture", Model.DetailsPictureModel); }
+                                    </div>
+
+                                    @{ Html.RenderWidget("productdetails_pictures_bottom"); }
+                                </div>
+
+                                <!-- Sidebar: Info, Price, Buttons etc. -->
+                                <aside class="col-12 col-md-12 col-lg-12 pd-info-col zoom-window-container">
+
+                                    @{ @*Html.RenderWidget("productdetails_info_top");*@ }
+                                    <!-- Title/Brand/ReviewSummary -->
+                                    <span class="font-weight-bold">Filter # @cursor</span>
+
+                                    @if (Model.ProductType != ProductType.GroupedProduct)
+                                    {
+                                        //Html.RenderWidget("productdetails_attrs_top");
+
+                                        <!-- Offer box -->
+                                        Html.RenderPartial("Product.Offer", Model);
+                                    }
+
+                                    @{ Html.RenderWidget("productdetails_info_bottom"); }
+                                </aside>
+                            </section>
+                        }
+
+                    </div>
+
+                </article>
+            }
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="page-body checkout-data text-center">
+                            @using (Html.BeginForm())
+                            {
+                                <div class="buttons">
+                                    <div class="back-button">
+                                        <a href="@Url.RouteUrl("QuantityStep",  new { productId = Model.Id, quantity = ViewBag.countfilters })">
+                                            <i class="fa fa-angle-left"></i>
+                                            <span>@T("Common.Back")</span>
+                                        </a>
+                                    </div>
+                                    <input type="submit" id="nextstep" name="nextstep" class="d-none" />
+                                    <a class="btn submit-btn btn-lg new-address-next-step-button" href="@Url.RouteUrl("ScheduleStep",  new { quantity = ViewBag.countfilters })">
+                                        <span>@T("Checkout.NextButton")</span>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 <script>
     $(function () {
         var settings = {

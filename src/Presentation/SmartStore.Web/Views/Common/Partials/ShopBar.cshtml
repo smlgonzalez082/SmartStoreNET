@@ -5,7 +5,7 @@
         <!-- LOGO -->
         <div class="shopbar-col shop-logo">
             @{
-                Html.RenderAction("Logo", "Common", new { area = "" });
+              //  Html.RenderAction("Logo", "Common", new { area = "" });
             }
         </div>
         <!-- SEARCH -->
@@ -17,6 +17,9 @@
     </div>
     <div class="shopbar-col-group shopbar-col-group-tools">
         <!-- TOOLS -->
-        @{ Html.RenderPartial("ShopBar.Tools", Model); }
+        @{
+            // Html.RenderPartial("ShopBar.Tools", Model); 
+
+        }
     </div>
 </div>

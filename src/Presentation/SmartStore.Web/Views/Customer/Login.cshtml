@@ -19,23 +19,23 @@
 }
 
 <div class="page login-page">
-	<div class="page-title">
-		<h1>@T("Account.Login.Welcome")</h1>
-	</div>
+    <div class="page-title">
+        <h1>@T("Account.Login.Welcome")</h1>
+    </div>
 
-	<div class="row mt-4">
-		<div class="col-12 col-md-7 col-lg-6 col-xl-5 order-md-last">
-			<div class="card shadow-sm p-4 mb-5 mb-md-0 login-box">
-				<h3 class="h4 mb-0">
-					@T("Account.Login.ReturningCustomer")
-				</h3>
-				<hr />
-				@if (!ViewData.ModelState.IsValid)
-				{
-					@Html.ValidationSummary(true, T("Account.Login.Unsuccessful").Text, new { @class = "alert alert-danger" })
-				}
+    <div class="row mt-4">
+        <div class="col-12 col-md-7 col-lg-6 col-xl-5 order-md-last">
+            <div class="card shadow-sm p-4 mb-5 mb-md-0 login-box">
+                <h3 class="h4 mb-0">
+                    @T("Account.Login.ReturningCustomer")
+                </h3>
+                <hr />
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    @Html.ValidationSummary(true, T("Account.Login.Unsuccessful").Text, new { @class = "alert alert-danger" })
+                }
 
-				<!-- SignIn Form -->
+                <!-- SignIn Form -->
                 <form action="@ViewContext.HttpContext.Request.RawUrl" method="post">
                     @if (Model.CustomerLoginType == CustomerLoginType.Username)
                     {
@@ -106,52 +106,54 @@
                     }
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block btn-login">
+                        <button type="submit" class="btn submit-btn btn-lg btn-block btn-login">
                             @T("Account.Login.LoginButton")
                         </button>
                     </div>
 
                     @{ Html.RenderAction("ExternalMethods", "ExternalAuthentication"); }
                 </form>
-			</div>
-		</div>
-		<div class="col-12 col-md-5 col-lg-6 col-xl-7 order-md-first">
-			<div class="page-info">
-				@{
-					Html.RenderPartial("_ExternalAuthentication.AssociateMessage");
-					Html.RenderAction("TopicBlock", "Topic", new { systemName = "LoginRegistrationInfo", bodyOnly = true, isLead = true });
-				}
-			</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-5 col-lg-6 col-xl-7 order-md-first">
+            <div class="page-info">
+                @{
+                    Html.RenderPartial("_ExternalAuthentication.AssociateMessage");
+                    Html.RenderAction("TopicBlock", "Topic", new { systemName = "LoginRegistrationInfo", bodyOnly = true, isLead = true });
+                }
+            </div>
 
-			<div class="register-block">
-				@if (Model.CheckoutAsGuest)
-				{
-					Html.RenderAction("TopicBlock", "Topic", new { systemName = "CheckoutAsGuestOrRegister", bodyOnly = true });
-					<div class="row sm-gutters">
-						<div class="col-sm-6 col-md-12 col-lg-6 pb-2 pb-lg-0">
-							<a class="btn btn-warning btn-lg btn-block register-button" href="@registerUrl">
-								@T("Account.Register.Button")
-							</a>
-						</div>
-						<div class="col-sm-6 col-md-12 col-lg-6">
-							<a class="btn btn-secondary btn-lg btn-block checkout-as-guest-button" href="@Url.RouteUrl("Checkout")">
-								<span>@T("Account.Login.CheckoutAsGuest")</span>
-								<i class="fa fa-angle-right"></i>
-							</a>
-						</div>
-					</div>
-				}
-				else
-				{
-					<div class="row">
-						<div class="col-12 col-lg-auto">
-							<a class="btn btn-warning btn-lg btn-block register-button" href="@registerUrl">
-								@T("Account.Register.Button")
-							</a>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
-	</div>
+            <div class="register-block">
+                @if (Model.CheckoutAsGuest)
+                {
+                    Html.RenderAction("TopicBlock", "Topic", new { systemName = "CheckoutAsGuestOrRegister", bodyOnly = true });
+                    <div class="row sm-gutters">
+                        <div class="col-sm-6 col-md-12 col-lg-6 pb-2 pb-lg-0">
+                            <a class="btn submit-btn btn-lg new-address-next-step-butto register-button" href="@registerUrl">
+                                @T("Account.Register.Button")
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-12 col-lg-6">
+                            <div class="back-button text-center">
+                                <a  href="@Url.RouteUrl("Checkout")">
+                                    <span>@T("Account.Login.CheckoutAsGuest")</span>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-12 col-lg-auto">
+                            <a class="btn submit-btn btn-lg new-address-next-step-butto register-button" href="@registerUrl">
+                                @T("Account.Register.Button")
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

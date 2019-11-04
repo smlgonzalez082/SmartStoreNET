@@ -467,7 +467,7 @@ p {
     display: none;
 }
 
-.hidden-xs {    
+.hidden-xs {
     display: none;
 }
 
@@ -494,8 +494,8 @@ p {
         display: block !important;
     }
 
-    .margin-top-xs {      
-        margin-top:5px;       
+    .margin-top-xs {
+        margin-top: 5px;
     }
 }
 
@@ -631,7 +631,7 @@ p {
     border: none !important;
     border-radius: 0 !important;
     padding-bottom: 10px !important;
-}    
+}
 
 
 .special_description_content > h2 {
@@ -720,7 +720,7 @@ p {
 /* --------------------------
 :: 5.0 Features Area CSS
 -------------------------- */
-    .single-feature {
+.single-feature {
     margin-bottom: 50px;
 }
 
@@ -1430,4 +1430,9 @@ p {
 
 .header_area.animated.sticky.slideInDown div.container-fluid div.row {
     height: 90px;
+}
+
+.btn-to-danger:hover {
+    background-color: #A865E1 !important;
+    border:none;
 }
