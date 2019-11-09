@@ -7,7 +7,7 @@
     string accountUrl = Model.IsAuthenticated ? Url.Action("Info", "Customer") : Url.RouteUrl("Login", new { ReturnUrl = Request.RawUrl });
     string currentLocation = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
     var isRtl = this.WorkContext.WorkingLanguage.Rtl;
-    var labelStyle = GetThemeVariable<string>("shopbar-label", "warning");
+    var labelStyle ="count";
 }
 <!-- Preloader Start -->
 <div id="preloader">
@@ -79,8 +79,25 @@
                                     </li>
                                 }
 
-                                <li>
-                                    <div class="shopbar-section @(GetThemeVariable<bool>("inverse-shopbar") ? "shopbar-inverse" : "shopbar-light")" style="background: none">
+                            </ul>
+                         
+                                    <div class="sing-up-button d-lg-none" style="float:left">
+                                        @if (Model.IsAuthenticated)
+                                        {
+
+                                            <a href="@Url.RouteUrl("Logout")" rel="nofollow">
+                                                @T("Account.Logout")
+                                            </a>
+
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.RouteUrl("Login", new { ReturnUrl = Request.RawUrl })">Login</a>
+                                        }
+                                    </div>
+                             
+                             
+                                    <div class="shopbar-section @(GetThemeVariable<bool>("inverse-shopbar") ? "shopbar-inverse" : "shopbar-light")" style="background: none; ">
                                         <div class="container shopbar-container">
                                             <div class="shopbar">
                                                 <div class="shopbar-col-group shopbar-col-group-tools">
@@ -96,11 +113,13 @@
                                                                     </span>
                                                                 </span>
                                                                 <span class="shopbar-button-label">
-                                                                    <span>@T("Common.Shopbar.BasketPartOne")</span><br />
+                                                                    @*<span>@T("Common.Shopbar.BasketPartOne")</span><br />
+                                                                        <strong>@T("Common.Shopbar.BasketPartTwo")</strong>*@
+                                                                    <span>Filters</span><br />
                                                                     <strong>@T("Common.Shopbar.BasketPartTwo")</strong>
                                                                 </span>
                                                                 <span class="shopbar-button-label-sm">
-                                                                    @T("Common.Shopbar.Basket")
+                                                                    @*@T("Common.Shopbar.Basket")*@   Filters Basket
                                                                 </span>
                                                             </a>
                                                         </div>
@@ -129,29 +148,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div class="sing-up-button d-lg-none">
-                                @if (Model.IsAuthenticated)
-                                {
-
-                                    <a href="@Url.RouteUrl("Logout")" rel="nofollow">
-                                        @T("Account.Logout")
-                                    </a>
-
-                                }
-                                else
-                                {
-                                    <a href="@Url.RouteUrl("Login", new { ReturnUrl = Request.RawUrl })">Login</a>
-                                }
-                            </div>
-                        </div>
-
+                                    </div>                                 
                     </nav>
                 </div>
-            </div>                                                                                                                         
+            </div>
 
             <!-- Signup btn -->
             <div class="col-12 col-lg-2">
@@ -170,6 +170,8 @@
                             @T("Account.Login")
                         </a>
                     }
+
+
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ namespace SmartStore.Web.Models.Checkout
         Schedule,
         Cart,
         Address,
-        Shipping,
+        //Shipping,
         Payment,
         Confirm,
         Complete

@@ -3,38 +3,40 @@
 @using SmartStore.Web.Models.Customer;
 
 @{
-    Layout = "_Layout";
+                /**/
 
-    Html.AddTitleParts(T("PageTitle.Register").Text);
+                Layout = "_Layout";
 
-    //continue URL
-    var continueUrl = "";
-    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
-    {
-        continueUrl = this.Context.Request.QueryString["returnUrl"];
-    }
-    else
-    {
-        continueUrl = Url.RouteUrl("HomePage");
-    }
+                Html.AddTitleParts(T("PageTitle.Register").Text);
+
+                //continue URL
+                var continueUrl = "";
+                if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+                {
+                    continueUrl = this.Context.Request.QueryString["returnUrl"];
+                }
+                else
+                {
+                    continueUrl = Url.RouteUrl("HomePage");
+                }
 }
 
 <div class="page registration-result-page">
-       <div class="col-12 text-center">
+    <div class="col-12 text-center">
         <div class="section-heading section-heading-checkout">
-            <h2>@T("Account.Register")</h2>
+            <h2>@</h2>
             <div class="line-shape"></div>
         </div>
     </div>
 
     <div class="page-body">
         <p class="section-body">
-            @Model.Result
+            @
         </p>
 
         <div class="buttons">
             <a class="btn submit-btn register-continue-button" href="@continueUrl">
-                @T("Account.Register.Result.Continue")
+                @
             </a>
         </div>
     </div>

@@ -24,6 +24,7 @@ Href = Url.Action("BillingAddress") ,
 VisibleXS = false
 },
 // Shipping
+/*
 new {
 Step = CheckoutProgressStep.Shipping,
 StepName = "shipping",
@@ -32,7 +33,7 @@ Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Shipping,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Shipping,
 Href = Url.Action("ShippingMethod") ,
 VisibleXS = false
-},
+},      */
 // Payment
 new {
 Step = CheckoutProgressStep.Payment,
@@ -69,8 +70,8 @@ VisibleXS = true
 
 
 
-<!--<div class="container clearfix " style="padding-left:0; margin-left:-35px;"> -->
-    <div class="container clearfix ">
+<div class="container clearfix costepsmargin">
+    @*<div class="container clearfix ">*@
         <div class="costeps row no-gutters" style="flex-wrap:nowrap">
 
             @{ Html.RenderWidget("checkout_steps_before"); }

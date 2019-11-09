@@ -388,10 +388,10 @@
 		<Value>Log out</Value>
 	</LocaleResource>
 	<LocaleResource Name="Account.MyAccount">
-		<Value>My account</Value>
+		<Value>My Account</Value>
 	</LocaleResource>
 	<LocaleResource Name="Account.Navigation">
-		<Value>My account</Value>
+		<Value>My Account</Value>
 	</LocaleResource>
 	<LocaleResource Name="Account.Options">
 		<Value>Options</Value>

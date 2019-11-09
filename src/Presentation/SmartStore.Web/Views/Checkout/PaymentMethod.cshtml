@@ -50,9 +50,12 @@
                                                    class="opt-radio form-check-input"
                                                    value="@(paymentMethod.PaymentMethodSystemName)" />
 
-                                            <label class="form-check-label" for="paymentmethod_@(i)">
-                                                <span class="opt-name">@paymentMethod.Name</span>
-                                            </label>
+                                            @if (paymentMethod.Name.HasValue())
+                                            {
+                                                <label class="form-check-label" for="paymentmethod_@(i)">
+                                                    <span class="opt-name">@paymentMethod.Name</span>
+                                                </label>
+                                            }
                                         </div>
                                         @if (paymentMethod.Fee.HasValue())
                                         {
@@ -121,8 +124,8 @@
         </div>
     </div>
 
-    </section>
-    <script>
+</section>
+<script>
 	$(function () {
 
 		var validationSummary = $('#payment-info-validation-summary');
@@ -197,4 +200,4 @@
 			});
 		});
 	});
-    </script>
+</script>

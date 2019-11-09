@@ -19,14 +19,14 @@
 }
 
 <div class="page login-page">
-    <div class="page-title">
-        <h1>@T("Account.Login.Welcome")</h1>
+    <div class="section-heading section-heading-checkout">
+        <h2>@T("Account.Login.Welcome")</h2>        
     </div>
 
     <div class="row mt-4">
         <div class="col-12 col-md-7 col-lg-6 col-xl-5 order-md-last">
             <div class="card shadow-sm p-4 mb-5 mb-md-0 login-box">
-                <h3 class="h4 mb-0">
+                <h3 class="h4 mb-0" style="color: #5b32b4;">
                     @T("Account.Login.ReturningCustomer")
                 </h3>
                 <hr />
@@ -91,7 +91,7 @@
                     <div class="form-group d-flex justify-content-between">
                         <div class="form-check">
                             @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
-                            <label for="@Html.IdFor(m => m.RememberMe)" class="form-check-label">@T("Account.Login.Fields.RememberMe")</label>
+                            <label for="@Html.IdFor(m => m.RememberMe)" class="form-check-label">Remember me</label>
                         </div>
                         <div class="forgot-password">
                             @Html.ActionLink(T("Account.Login.ForgotPassword").Text, "PasswordRecovery", "Customer")
@@ -135,7 +135,7 @@
                         </div>
                         <div class="col-sm-6 col-md-12 col-lg-6">
                             <div class="back-button text-center">
-                                <a  href="@Url.RouteUrl("Checkout")">
+                                <a href="@Url.RouteUrl("Checkout")">
                                     <span>@T("Account.Login.CheckoutAsGuest")</span>
                                     <i class="fa fa-angle-right"></i>
                                 </a>

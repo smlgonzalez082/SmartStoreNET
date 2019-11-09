@@ -3,11 +3,12 @@
 @using SmartStore.Web.Models.Customer;
 
 @{
-	Html.AddTitleParts(T("PageTitle.Account").Text);
+    Html.AddTitleParts(T("PageTitle.Account").Text);
 
-	Layout = "_MyAccount";
-	ViewBag.PageClassToken = "info";
-	ViewBag.PageTitle = T("Account.CustomerInfo").Text;
+    Layout = "_MyAccount";
+    ViewBag.PageClassToken = "info";
+    //ViewBag.PageTitle = T("Account.CustomerInfo").Text;
+    ViewBag.PageTitle = "Customer Information";
 }
 
 @using (Html.BeginForm("Info", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -294,7 +295,7 @@
 
     <div class="form-group row">
         <div class="col">
-            <button type="submit" name="save-info-button" class="btn btn-primary btn-lg save-customer-info-button">
+            <button type="submit" name="save-info-button" class="btn submit-btn btn-lg save-customer-info-button">
                 <i class="fa fa-check"></i>
                 <span>@T("Common.Save")</span>
             </button>

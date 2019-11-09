@@ -32,15 +32,15 @@
 
 
             <div class="col flex-grow-1">
-                <a class="btn btn-primary btn-lg btn-block btn-add-to-cart ajax-cart-link"
+                <a class="btn btn-primary submit-btn btn-lg btn-block btn-add-to-cart ajax-cart-link"
                    href="@urlAddCart"
                    rel="nofollow"
                    data-form-selector="#pd-form-@Model.AttributeInfo"
                    data-type="cart"
                    data-action="add"
                    data-toggle="offcanvas" data-target="#offcanvas-cart">
-                    <i class="fa fa-cart-arrow-down"></i>
-                    <span>@(Model.AddToCart.AvailableForPreOrder ? T("ShoppingCart.PreOrder") : T("ShoppingCart.AddToCart"))</span>
+                    <i class="icm icm-bag"></i>
+                    <span>Add to basket</span>
                 </a>
             </div>
         }

@@ -22,7 +22,7 @@
 							</div>
 						</div>
 						<div class="col col-auto">
-							<a class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("BillingAddress", "Checkout")'>@T("Common.Change")</a>
+							<a style="background-color:#3f51b5" class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("BillingAddress", "Checkout")'>@T("Common.Change")</a>
 						</div>
 					</div>
 					@RenderAddress(Model.BillingAddress)
@@ -38,7 +38,7 @@
 								</div>
 							</div>
 							<div class="col col-auto">
-								<a class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("ShippingAddress", "Checkout")'>@T("Common.Change")</a>
+								<a style="background-color:#3f51b5" class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("ShippingAddress", "Checkout")'>@T("Common.Change")</a>
 							</div>
 						</div>
 						@RenderAddress(Model.ShippingAddress)
@@ -64,7 +64,7 @@
                                 @if (Model.DisplayShippingMethodChangeOption)
                                 {
                                     <div class="col col-auto">
-                                        <a class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("ShippingMethod", "Checkout")'>@T("Common.Change")</a>
+                                        <a style="background-color:#3f51b5" class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("ShippingMethod", "Checkout")'>@T("Common.Change")</a>
                                     </div>
                                 }
 							</div>
@@ -81,7 +81,7 @@
 								@if (Model.DisplayPaymentMethodChangeOption)
 								{
 									<div class="col col-auto">
-										<a class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("PaymentMethod", "Checkout")'>@T("Common.Change")</a>
+										<a style="background-color:#3f51b5" class="btn btn-primary btn-sm change-checkout-data" href='@Url.Action("PaymentMethod", "Checkout")'>@T("Common.Change")</a>
 									</div>
 								}
 							</div>

@@ -22,9 +22,10 @@
 	@if (Model.TotalProducts == 0)
     {
 		<div class="no-items">
-			<h4 class="no-item-title">
-				@T("ShoppingCart.Mini.EmptyCart.Title")
-			</h4>
+            <h4 class="no-item-title">
+                @*@T("ShoppingCart.Mini.EmptyCart.Title")*@
+                Your Filters Basket is Empty
+            </h4>
 			<p class="no-item-icon">
 				<i class="fa fa-shopping-basket fa-4x"></i>
 			</p>
@@ -118,7 +119,7 @@
 						</div>
 
 						<div class="ml-auto text-nowrap">
-                            @if (Model.DisplayMoveToWishlistButton)
+                           @*@if (Model.DisplayMoveToWishlistButton)
                             {
                                 <a class="btn btn-secondary btn-sm btn-icon ajax-cart-link" title="@T("ShoppingCart.MoveToWishlist")"
                                    href="#"
@@ -129,14 +130,14 @@
                                    data-action="addfromcart">
                                     <i class="fal fa-heart"></i>
                                 </a>
-                            }
+                            }*@
 							<a class="btn btn-secondary btn-to-danger btn-sm btn-icon remove ajax-cart-link" title="@T("Common.Remove")"
 							   href="#"
 							   rel="nofollow"
 							   data-href='@Url.Action("DeleteCartItem", "ShoppingCart", new { cartItemId = item.Id })'
 							   data-name="@item.ProductName"
 							   data-type="cart"
-							   data-action="remove">
+							   data-action="remove" style="color:white">
 								<i class="fal fa-trash-alt"></i>
 							</a>
 						</div>
@@ -166,7 +167,7 @@
 			</div>
 		</div>
 		<div class="offcanvas-cart-footer-col row sm-gutters d-flex flex-wrap">
-			@if (Model.DisplayCheckoutButton)
+			@*@if (Model.DisplayCheckoutButton)
             {
 				<div class="col">
 					<a class="btn btn-success btn-flat btn-flat-light btn-block btn-action" href="@Url.RouteUrl("ShoppingCart")">
@@ -181,14 +182,14 @@
 				</div>
             }
             else
-            {
+            {*@
 				<div class="col">
-					<a class="btn btn-clear btn-block btn-action" href="@Url.RouteUrl("ShoppingCart")">
+					<a class="btn btn-clear submit-btn btn-block btn-action submit-btn" href="@Url.RouteUrl("ShoppingCart")">
 						<i class="fa fa-check"></i>
 						<span>@T("ShoppingCart.Mini.ViewCart")</span>
 					</a>
 				</div>
-            }
+            @*}*@
 		</div>
 	</div>
 

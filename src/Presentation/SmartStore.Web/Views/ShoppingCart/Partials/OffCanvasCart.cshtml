@@ -12,7 +12,8 @@
         {
             <li class="nav-item col">
                 <a id="cart-tab" class="nav-link" data-toggle="tab" href="#occ-cart" role="tab" data-url="@Url.Action("OffCanvasShoppingCart", "ShoppingCart")">
-                    <span class="title">@T("PageTitle.ShoppingCart")</span>
+                    @*<span class="title">@T("PageTitle.ShoppingCart")</span>*@
+                    <span class="title">FILTERS  BASKET</span>
                     <span class="badge badge-pill label-cart-amount badge-@labelStyle" data-bind-to="CartItemsCount" style="@(Model.CartItemsCount > 0 ? "" : "display:none")">@Model.CartItemsCount</span>
                 </a>
             </li>

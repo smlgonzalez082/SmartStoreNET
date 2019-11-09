@@ -19,14 +19,18 @@
             </div>
         </div>
 
-        <div class="row no-gutters">      
+        <div class="row no-gutters">
             <div class="page-body">
                 @{ Html.RenderWidget("contactus_top"); }
 
                 @if (Model.SuccessfullySent)
                 {
-                    <div class="alert alert-success">
-                        @Model.Result
+                    <div class="row text-center">
+                        <div class="col-12 ">
+                            <div class="alert alert-success">
+                                @Model.Result
+                            </div>
+                        </div>
                     </div>
                 }
                 else
@@ -75,8 +79,8 @@
                                     @Html.Raw(Html.GenerateCaptcha())
                                 </div>
                             </div>
-                        }       
-                     
+                        }
+
                         <div class="form-group row">
                             <div class="col col-sm-auto offset-sm-3">
                                 <button type="submit" name="send-email" class="btn submit-btn btn-lg new-address-next-step-button">

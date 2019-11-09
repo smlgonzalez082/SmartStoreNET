@@ -15,13 +15,19 @@
 
                 @{ Html.RenderAction("PollBlock", "Poll", new { systemKeyword = "MyAccountMenu", area = "" }); }
 			</div>
-			<div class="col-md-8 col-lg-9">
-				<div class="page-title pt-4 pt-md-0">
-					<h1 class="h3">@ViewBag.PageTitle</h1>
-				</div>
+            <div class="col-md-8 col-lg-9">
+                @*<div class="page-title pt-4 pt-md-0">
+                    <h1 class="h3">@ViewBag.PageTitle</h1>
+                </div>*@
+                <div class="col-12 text-center">
+                    <div class="section-heading section-heading-checkout">
+                        <h2>@ViewBag.PageTitle</h2>
+                        <div class="line-shape"></div>
+                    </div>
+                </div>
 
-				@RenderBody()
-			</div>
+                @RenderBody()
+            </div>
 		</div>
 	</div>
 </div>
