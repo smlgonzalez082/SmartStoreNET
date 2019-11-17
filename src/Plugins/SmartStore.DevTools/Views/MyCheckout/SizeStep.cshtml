@@ -6,6 +6,7 @@
 @using SmartStore.Web.Models.Catalog;
 @using SmartStore.Web.Framework.UI;
 @using SmartStore.Web;
+@using SmartStore.Web.Models.ShoppingCart;
 @{
     Layout = "_Checkout";
 
@@ -25,6 +26,9 @@
 
     // updateUrl = "/MyCheckout/UpdateProductDetails?productId=60&bundleItemId=0";
     updateUrl = "/MyCheckout/UpdateProductDetails?productId=1&bundleItemId=0";
+
+    var cartModelItems = ViewBag.CartItems;//as MiniShoppingCartModel;
+
 }
 
 @section orderProgress{
@@ -104,13 +108,17 @@
                             {
                                 <div class="buttons">
                                     <div class="back-button">
-                                        <a href="@Url.RouteUrl("QuantityStep",  new { productId = Model.Id, quantity = ViewBag.countfilters })">
+                                        <a href="@Url.RouteUrl("QuantityStep", new { productId = Model.Id, quantity = ViewBag.countfilters })">
                                             <i class="fa fa-angle-left"></i>
                                             <span>@T("Common.Back")</span>
                                         </a>
                                     </div>
                                     <input type="submit" id="nextstep" name="nextstep" class="d-none" />
-                                    <a class="btn submit-btn btn-lg new-address-next-step-button" href="@Url.RouteUrl("ScheduleStep",  new { quantity = ViewBag.countfilters })">
+                                    @*<a class="btn submit-btn btn-lg new-address-next-step-button" href="@Url.RouteUrl("ScheduleStep",  new { quantity = ViewBag.countfilters })">
+                                            <span>@T("Checkout.NextButton")</span>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>*@
+                                    <a class="btn submit-btn btn-lg new-address-next-step-button" id="nextSizeStep" href="@Url.RouteUrl("ScheduleStep", new { quantity = ViewBag.countfilters })">
                                         <span>@T("Checkout.NextButton")</span>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
@@ -129,7 +137,47 @@
             galleryStartIndex: @(Model.DetailsPictureModel.GalleryStartIndex),
             enableZoom: toBool('@(Model.DetailsPictureModel.DefaultPictureZoomEnabled)')
         };
-
     	//$('#pd-form1').productDetail(settings);
+    });
+
+    $(document).ready(function () {        
+        var carItems =  JSON.parse('@Html.Raw(Json.Encode(cartModelItems))');         
+
+        var updateContainers = document.getElementsByClassName("update-container");
+
+        for (var k = 0; k < carItems.length; k++) {   
+            var selectsControls = updateContainers[k].getElementsByTagName("select");
+            var quantityDiv = updateContainers[k].getElementsByClassName("qty-input")[0];
+           
+            for (var m = 0; m < selectsControls.length; m++) {
+                selectsControls[m].id = (k+1) + selectsControls[m].id;
+            }    
+
+            var quantityInput = quantityDiv.getElementsByTagName("input")[0];
+            quantityInput.value = carItems[k].EnteredQuantity;
+        };
+        debugger;
+        var i = 1;    
+
+        carItems.forEach(function (carItem) {            
+            var l = 0; 
+            carItem.ControlIds.forEach(function (controlId) {
+                $('#' + i + controlId).val(carItem.AttributeValues[l]);
+                l++;
+            });
+
+            i++;
+        });
+    });
+
+    $('#nextSizeStep').on('click', function (e) {
+        var sleep = 0;
+        $('.btn-add-to-cart').each(function () {
+            var likeElement = $(this);
+            setTimeout(function () {
+                likeElement.trigger('click');
+            }, sleep);
+            sleep += 2000;
+        });
     });
 </script>

@@ -1,11 +1,16 @@
-﻿using SmartStore.Core.Domain.Catalog;
+﻿using SmartStore.Core;
+using SmartStore.Core.Domain.Catalog;
 using SmartStore.Core.Domain.Media;
+using SmartStore.Core.Domain.Orders;
 using SmartStore.Core.Domain.Seo;
 using SmartStore.Core.Domain.Tax;
 using SmartStore.DevTools.Models;
 using SmartStore.Services;
 using SmartStore.Services.Catalog;
+using SmartStore.Services.Catalog.Extensions;
 using SmartStore.Services.Catalog.Modelling;
+using SmartStore.Services.Customers;
+using SmartStore.Services.Directory;
 using SmartStore.Services.Localization;
 using SmartStore.Services.Media;
 using SmartStore.Services.Orders;
@@ -20,6 +25,7 @@ using SmartStore.Web.Framework.Controllers;
 using SmartStore.Web.Framework.UI;
 using SmartStore.Web.Infrastructure.Cache;
 using SmartStore.Web.Models.Catalog;
+using SmartStore.Web.Models.ShoppingCart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,9 +57,19 @@ namespace SmartStore.DevTools.Controllers
         private readonly ITaxService _taxService;
         private readonly Lazy<TaxSettings> _taxSettings;
         private readonly HttpContextBase _httpContext;
+        private readonly IWorkContext _workContext;
+        private readonly IStoreContext _storeContext;
+        private readonly IProductAttributeFormatter _productAttributeFormatter;
+        private readonly ProductUrlHelper _productUrlHelper;
+        private readonly ShoppingCartSettings _shoppingCartSettings;
+        private readonly ILocalizationService _localizationService;
+        private readonly ICurrencyService _currencyService;
+        private readonly IPriceCalculationService _priceCalculationService;
+        private readonly IPriceFormatter _priceFormatter;
+        private readonly IProductAttributeParser _productAttributeParser;
 
         public MyCheckoutController(
-             ICommonServices services,
+            ICommonServices services,
             CatalogHelper helper,
             ICatalogSearchService catalogSearchService,
             CatalogSettings catalogSettings,
@@ -70,7 +86,17 @@ namespace SmartStore.DevTools.Controllers
             IProductAttributeService productAttributeService,
             ITaxService taxService,
              HttpContextBase httpContext,
-            Lazy<TaxSettings> taxSettings)
+            Lazy<TaxSettings> taxSettings,
+            IWorkContext workContext,
+            IStoreContext storeContext,
+            IProductAttributeFormatter productAttributeFormatter,
+            ProductUrlHelper productUrlHelper,
+            ShoppingCartSettings shoppingCartSettings,
+            ILocalizationService localizationService,
+            ICurrencyService currencyService,
+            IPriceCalculationService priceCalculationService,
+            IPriceFormatter priceFormatter,
+            IProductAttributeParser productAttributeParser)
         {
             _services = services;
             _helper = helper;
@@ -90,6 +116,16 @@ namespace SmartStore.DevTools.Controllers
             _taxService = taxService;
             _taxSettings = taxSettings;
             _httpContext = httpContext;
+            _workContext = workContext;
+            _storeContext = storeContext;
+            _productAttributeFormatter = productAttributeFormatter;
+            _productUrlHelper = productUrlHelper;
+            _shoppingCartSettings = shoppingCartSettings;
+            _localizationService = localizationService;
+            _currencyService = currencyService;
+            _priceCalculationService = priceCalculationService;
+            _priceFormatter = priceFormatter;
+            _productAttributeParser = productAttributeParser;
         }
 
         public ActionResult MyBillingAddress()
@@ -126,6 +162,7 @@ namespace SmartStore.DevTools.Controllers
         //public ActionResult CheckoutStep(int categoryId, CatalogSearchQuery query)
         public ActionResult QuantityStep(int productId, int quantity = 0)
         {
+            _httpContext.Session["productId"] = productId;
 
             // var productId = 16;
 
@@ -162,10 +199,28 @@ namespace SmartStore.DevTools.Controllers
         // public ActionResult QuantitySizeStep(int productId, string attributes, ProductVariantQuery query)
         //public ActionResult SizeStep(int productId, int quantity)      QuantityModel
         //[HttpPost]
-        public ActionResult SizeStep(int productId, int quantity)
+        public ActionResult SizeStep(int productId = 0, int quantity = 0)
         {
-            //int productId = 60;
+            if (productId == 0) productId = (int)_httpContext.Session["productId"];
+            if (quantity == 0) quantity = (int)_httpContext.Session["quantity"];
+
+            _httpContext.Session["quantity"] = quantity;
             ViewBag.countfilters = quantity;
+
+            var cartItems = PrepareCartItemsModel(productId).Items;
+            //ProductId, BundleItemId, ProductAttributeId, Id
+            List<AttributeProductModel> cartAttributesitems = cartItems.Select(y => new AttributeProductModel
+            {
+                AttributeValues = ParseAttributeInfo(y.AttributeInfo),
+                EnteredQuantity = y.EnteredQuantity,
+                ProductId = y.ProductId,
+                ProductName = y.ProductName,
+                Id = y.Id,
+                ControlIds = ParseControlId(y.ProductId, y.AttributeInfo)
+            }).ToList();
+
+            ViewBag.CartItems = cartAttributesitems;
+
             string attributes = "";
             ProductVariantQuery query = new ProductVariantQuery();
             var product = _productService.GetProductById(productId);
@@ -174,7 +229,7 @@ namespace SmartStore.DevTools.Controllers
 
             // Is published? Check whether the current user has a "Manage catalog" permission.
             // It allows him to preview a product before publishing.
-           if (!product.Published)
+            if (!product.Published)
                 return HttpNotFound();
 
             // ACL (access control list)
@@ -184,27 +239,6 @@ namespace SmartStore.DevTools.Controllers
             // Store mapping
             if (!_storeMappingService.Authorize(product))
                 return HttpNotFound();
-
-            // Is product individually visible?
-            if (!product.VisibleIndividually)
-            {
-                // Find parent grouped product.
-                var parentGroupedProduct = _productService.GetProductById(product.ParentGroupedProductId);
-                if (parentGroupedProduct == null)
-                    return HttpNotFound();
-
-                var seName = parentGroupedProduct.GetSeName();
-                if (seName.IsEmpty())
-                    return HttpNotFound();
-
-                var routeValues = new RouteValueDictionary();
-                routeValues.Add("SeName", seName);
-
-                // Add query string parameters.
-                Request.QueryString.AllKeys.Each(x => routeValues.Add(x, Request.QueryString[x]));
-
-                return RedirectToRoute("Product", routeValues);
-            }
 
             // Prepare the view model
             var model = _helper.PrepareProductDetailsPageModel(product, query);
@@ -220,56 +254,146 @@ namespace SmartStore.DevTools.Controllers
             _services.CustomerActivity.InsertActivity("PublicStore.ViewProduct", T("ActivityLog.PublicStore.ViewProduct"), product.Name);
 
             // Breadcrumb
-            if (_catalogSettings.CategoryBreadcrumbEnabled)
-            {
-                _helper.GetCategoryBreadcrumb(_breadcrumb, ControllerContext, product);
+            //if (_catalogSettings.CategoryBreadcrumbEnabled)
+            //{
+            //    _helper.GetCategoryBreadcrumb(_breadcrumb, ControllerContext, product);
 
-                _breadcrumb.Track(new MenuItem
-                {
-                    Text = model.Name,
-                    Rtl = model.Name.CurrentLanguage.Rtl,
-                    EntityId = product.Id,
-                    Url = Url.RouteUrl("Product", new { model.SeName })
-                });
-            }
+            //    _breadcrumb.Track(new MenuItem
+            //    {
+            //        Text = model.Name,
+            //        Rtl = model.Name.CurrentLanguage.Rtl,
+            //        EntityId = product.Id,
+            //        Url = Url.RouteUrl("Product", new { model.SeName })
+            //    });
+            //}
 
             //return View(model.ProductTemplateViewPath, model);
 
             return View("SizeStep", model);
         }
 
-        public ActionResult ScheduleStep(ProductDetailsModel model, int quantity)
+        private string[] ParseControlId(int productId, string attributeInfo)
         {
+            List<string> controls = new List<string>();
+
+            var pvaCollection = _productAttributeParser.ParseProductVariantAttributes(attributeInfo);
+
+            for (int i = 0; i < pvaCollection.Count; i++)
+            {
+                var pva = pvaCollection[i];  
+                controls.Add("pvari" + productId.ToString() + "-0-" + pva.ProductAttributeId.ToString() + "-" + pva.Id.ToString());
+            }               
+
+            return controls.ToArray();
+        }
+
+        private string[] ParseAttributeInfo(string attributeInfo)
+        {
+            List<string> values = new List<string>();
+
+            var pvaCollection = _productAttributeParser.ParseProductVariantAttributes(attributeInfo);
+
+            for (int i = 0; i < pvaCollection.Count; i++)
+            {
+                var pva = pvaCollection[i];
+                values.Add(_productAttributeParser.ParseValues(attributeInfo, pva.Id)[0]);
+            }
+
+            return values.ToArray();
+        }
+
+        public MiniShoppingCartModel PrepareCartItemsModel(int productId)
+        {
+            var model = new MiniShoppingCartModel();
+
+            var cart = _workContext.CurrentCustomer.GetCartItems(ShoppingCartType.ShoppingCart, _storeContext.CurrentStore.Id).Where(x => x.Item.ProductId == productId);
+
+            foreach (var sci in cart)
+            {
+                var item = sci.Item;
+                var product = sci.Item.Product;
+
+                var cartItemModel = new MiniShoppingCartModel.ShoppingCartItemModel
+                {
+                    Id = item.Id,
+                    ProductId = product.Id,
+                    ProductName = product.GetLocalized(x => x.Name),
+                    ShortDesc = product.GetLocalized(x => x.ShortDescription),
+                    ProductSeName = product.GetSeName(),
+                    EnteredQuantity = item.Quantity,
+                    MaxOrderAmount = product.OrderMaximumQuantity,
+                    MinOrderAmount = product.OrderMinimumQuantity,
+                    QuantityStep = product.QuantityStep > 0 ? product.QuantityStep : 1,
+                    CreatedOnUtc = item.UpdatedOnUtc,
+                    AttributeInfo = item.AttributesXml
+                    //AttributeInfo = _productAttributeFormatter.FormatAttributes(
+                    //            product,
+                    //            item.AttributesXml,
+                    //            null,
+                    //            serapator: ", ",
+                    //            //htmlEncode: false,
+                    //            renderPrices: false,
+                    //            renderGiftCardAttributes: false,
+                    //            allowHyperlinks: false)
+                };
+
+                cartItemModel.QuantityUnitName = null;
+                cartItemModel.ProductUrl = _productUrlHelper.GetProductUrl(cartItemModel.ProductSeName, sci);
+
+                //unit prices
+                if (product.CallForPrice)
+                {
+                    cartItemModel.UnitPrice = _localizationService.GetResource("Products.CallForPrice");
+                }
+                else
+                {
+                    product.MergeWithCombination(item.AttributesXml);
+
+                    decimal taxRate = decimal.Zero;
+                    decimal shoppingCartUnitPriceWithDiscountBase = _taxService.GetProductPrice(product, _priceCalculationService.GetUnitPrice(sci, true), out taxRate);
+                    decimal shoppingCartUnitPriceWithDiscount = _currencyService.ConvertFromPrimaryStoreCurrency(shoppingCartUnitPriceWithDiscountBase, _workContext.WorkingCurrency);
+
+                    cartItemModel.UnitPrice = _priceFormatter.FormatPrice(shoppingCartUnitPriceWithDiscount);
+                }
+
+
+                model.Items.Add(cartItemModel);
+            }
+
+            return model;
+        }
+
+        public ActionResult ScheduleStep(ProductDetailsModel model, int quantity = 0)
+        {
+            if (_httpContext.Session["ShipmentFrecuency"] == null)
+                _httpContext.Session["ShipmentFrecuency"] = 1;
+
             ViewBag.frecuency = _httpContext.Session["ShipmentFrecuency"];
-            ViewBag.quantity = quantity;
+            ViewBag.quantity = quantity == 0 ? _httpContext.Session["quantity"] : quantity;
+            ViewBag.productId = _httpContext.Session["productId"];
 
             ViewBag.frecuencies = new List<FrecuencyModel> {
                                     new   FrecuencyModel{
                                     Text = "Every Month",
                                     Selected =  (ViewBag.frecuency != null && ViewBag.frecuency == 1) || (ViewBag.frecuency == null) ? true:false,
                                     Value = 1
-
                                     } ,
                                     new FrecuencyModel {
                                     Text = "Every 2 Months",
                                     Selected =  (ViewBag.frecuency != null && ViewBag.frecuency == 2) ? true:false,
                                       Value = 2
-
                                     } ,
                                     new FrecuencyModel{
                                     Text = "Every 3 Months",
                                     Selected = (ViewBag.frecuency != null && ViewBag.frecuency == 3) ? true:false,
                                       Value = 3
-
                                     } ,
                                     new FrecuencyModel{
                                     Text = "Every 4 Months",
                                     Selected =  (ViewBag.frecuency != null && ViewBag.frecuency == 4) ? true:false,
                                      Value = 4
-
                                     }
                                     };
-
 
             return View("ScheduleStep", model);
         }
@@ -285,10 +409,10 @@ namespace SmartStore.DevTools.Controllers
         [ChildActionOnly]
         public ActionResult ProductTierPrices(int productId)
         {
-           /* if (!_services.Permissions.Authorize(StandardPermissionProvider.DisplayPrice))
-            {
-                return Content("");
-            }     */
+            /* if (!_services.Permissions.Authorize(StandardPermissionProvider.DisplayPrice))
+             {
+                 return Content("");
+             }     */
 
             var product = _productService.GetProductById(productId);
             if (product == null)

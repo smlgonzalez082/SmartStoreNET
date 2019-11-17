@@ -17,7 +17,7 @@ namespace SmartStore.Web.Models.Checkout
         Address,
         //Shipping,
         Payment,
-        Confirm,
-        Complete
+        Confirm//,
+        //Complete
     }
 }

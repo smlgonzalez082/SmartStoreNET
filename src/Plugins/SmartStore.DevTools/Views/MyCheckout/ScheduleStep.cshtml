@@ -19,7 +19,7 @@
         itemType = (string)null // TODO: (mc) WTF!?
     });
 
-    string backUrl = Url.RouteUrl("SizeStep", new { productId = 61, quantity = ViewBag.quantity });
+    string backUrl = Url.RouteUrl("SizeStep", new { productId = ViewBag.productId, quantity = ViewBag.quantity });
 
 
     int j = 0;

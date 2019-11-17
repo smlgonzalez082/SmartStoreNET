@@ -219,6 +219,9 @@
     <Compile Include="Models\FrecuencyModel.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Models\AttributeProductModel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\QuantityModel.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

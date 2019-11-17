@@ -7,7 +7,7 @@
 new {
 Step = CheckoutProgressStep.Cart,
 StepName = "cart",
-Label =  T("Checkout.Progress.Cart").Text,
+Label =  "Basket",
 Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Cart,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Cart,
 Href = Url.RouteUrl("ShoppingCart"),
@@ -53,7 +53,7 @@ Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Confirm,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Confirm,
 Href = Url.Action("Confirm"),
 VisibleXS = false
-},
+}/*,
 // Complete
 new {
 Step = CheckoutProgressStep.Complete,
@@ -63,7 +63,7 @@ Visited = Model.CheckoutProgressStep > CheckoutProgressStep.Complete,
 Active = Model.CheckoutProgressStep == CheckoutProgressStep.Complete,
 Href = "javascript:void(0)" ,
 VisibleXS = true
-}
+} */
 };
 }
 
